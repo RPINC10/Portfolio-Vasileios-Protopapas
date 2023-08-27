@@ -1,0 +1,169 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>About Page</title>
+    <meta name="description" content="Portfolio">
+    <meta name="author" content="Vasileios Protopapas">
+    <link rel="stylesheet" href="style.css">
+    <style>
+      /*This area is responsible for keeping the flex area from overlapping with the aside*/
+      section {
+        padding: 0 1em;
+        word-spacing: 0.1em;
+        color: white;
+        padding-left: 10px;
+        animation: fade 10s;
+      }
+/*This area is responsible for the animation that created the fade in effect by having no opacity in the 1st frame and then bringing it back in the final frame*/
+      @keyframes fade {
+        0% {
+        opacity: 0;
+      }
+        100% {
+        opacity: 1;
+      }
+    }
+
+/*When you hover in the a tag in the article it will trigger an animation*/
+article a:hover{
+        animation: fade 10s;
+        transition: width 2s, height 2s, transform 2s;
+      }
+
+/*Here after the a tag in the attribute field I added a special icon in css code so that it dispays without the need for an image*/
+article a::after{
+  content: '\2709';
+}
+article:nth-child(4){
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      }
+
+/*Every p tag in the section will have a change in the font size */
+section p{
+        font-size: 1.5em;
+      }
+
+/*The header that is included in the section will be changed by having ti's text centered, a change in font size and a specialised font*/
+section > header{
+        text-align: center;
+        font-size: 50px;
+        font-family: um2;
+      }
+
+/*This keeps all of the images in a uniform matter primarily with the float left property which creates a row in the images*/
+.container {
+  position: relative;
+  width: 30%;
+  float: left;
+  margin: 24px;
+}
+
+/*This will make sure that the images in the container stay in their position when zoomed in or out while also changing it size properties and adding some rounded edges*/
+.image {
+  display: block;
+  width: 100%;
+  height: 500px;
+  border-radius: 10%;
+}
+
+/*This is the overlay that comes when you hover on the image*/
+.overlay {
+  /*This area is responsible for keeping the overlay from overlaping the image when drawn in*/
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  /*This is to keep the overlay from showing up before the hover*/
+  opacity: 0;
+  /*This is for the overlay to have a smooth transition while also having a gradient colour with rounded edges*/
+  transition: .5s ease-in;
+  background-image: linear-gradient(to right, rgba(32, 7, 255, 0.336), rgba(255,0,0,1));
+  border-radius: 10%;
+}
+
+/*When you hover over the container in the images then the overlay will display it's contents*/
+.container:hover .overlay {
+  opacity: 1;
+}
+
+/*This is responsible for the text that comes inside the overlay */
+.text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  /*This area is responsible for positioning the text right in the center of the overlay*/
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /*A different font was chosen for cohesion*/
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+    </style>
+  </head>
+  <body>
+    <header class="header-menu">
+      <nav>
+        <ul>
+          <li><a href="Portfolio.html">Home Page</a></li>
+          <li><a href="hobbies_page.html">Blog</a></li>
+          <li><p>My Prortfolio</p></li>
+          <li><a href="about_page.html">About</a></li>
+          <li><a href="form.html">Form</a></li>
+        </ul>
+      </nav>
+    </header>
+    <section>
+    <h1>About Page</h1>
+      <article>
+        <header>
+          <h2>About Vasileios Protopapas</h2>
+        </header>
+        <p>I am 19 years old and I'm currently studying Business Information Studies at the 
+        <b>Universtity of Westminster</b>. In the past when I was in secondary school 
+        I studied Computer science in year 11. My hometown is Hungary, 
+        however now I live in Tumahu. I really love this city so far. I can continue, 
+        I can tell you that my job is copywriter, I have a personal life as well, I like ghost hunting. 
+        I love to listen to crust punk (thx haug) and I am a bookworm, I love books like Antony and Cleopatra. 
+        After a long day at work, I love to play games to relieve my stress. 
+        I love to watch TV shows like Karen (1975), comedy, it is really good, both story and acting.</p>
+      </article>
+      <article>
+        <p>I can talk to you via <a href="mailto:w1735144@westminster.ac.uk">email</a></p>
+      </article>
+      <article>
+          <p>Watching other people being able to program complex applications gives me inspiration 
+          to push foward with my work. I like to tinker around with electronic parts, 
+          playing video games and taking care of my dog. </p>
+      </article>
+      <header>My Projects</header>
+      <div class="container">
+        <img src="game.JPG" alt="Avatar" class="image">
+        <div class="overlay">
+          <div class="text">My Python Game</div>
+        </div>
+      </div>
+      <div class="container">
+        <img src="pic1.jpg" alt="Avatar" class="image">
+        <div class="overlay">
+          <div class="text">Repairing Broken Laptop</div>
+      </div>
+      </div>
+      <div class="container">
+        <img src="pic2.jpg" alt="Avatar" class="image">
+        <div class="overlay">
+          <div class="text">Reapaired Broken 2 in 1 laptop</div>
+      </div>
+      </div>
+    </section>
+    <footer>
+      <a href="form.html">Contact Form</a>
+      <a href="about_page.html">About</a>
+      <a href="#top"> Back to the top</a>
+    </footer>
+  </body>
+</html>            

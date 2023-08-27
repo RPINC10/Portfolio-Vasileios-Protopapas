@@ -1,0 +1,144 @@
+    /*For all the a tags in the website it will ensure that they're all white with no text decoration such as bullet points or underlines*/
+    a{
+       color: rgb(255, 255, 255);
+       text-decoration: none;
+      }
+
+      /*When you hover on the text at the navbar they will become blue*/
+      .header-menu a:hover{
+        color: rgb(0, 0, 255);
+      }
+      
+      /*The a tags inside of the navabar will be white with a black text shadow and a strong font weighting*/
+      .header-menu a{
+        color: rgb(255, 255, 255);
+        font-weight: 700;
+        text-shadow:4px 4px black;
+      }
+    
+      /*Both the header-meau and the border will share the same changes*/
+      .header-menu,
+      footer {
+        width: 100%;
+        overflow: hidden;
+      }
+
+      /*All of the a tags inside of the footer will have these changes made to them*/
+      footer > a{
+        color: black;
+        text-shadow: none;
+        padding: 10px;
+      }
+
+      /*This is where the background for the navbar which has a gradient*/
+      .header-menu {
+        height: 60px;
+        background-image: linear-gradient(to right, rgba(32, 7, 255, 0.336), rgba(255,0,0,1));
+      }
+
+      /*This is where the main part of the entirety of the webstite is controlled*/
+      body {
+        /*This combines both float and position in order to create a boxed area*/
+        display: flex;
+        flex-wrap: wrap;
+        animation-name: rotateInLeft;
+        animation-duration: 1s;
+        background-color:black;
+        /*Here a border was created around the body with an inset that gived a 3d illusion*/
+        border: 10px inset white;
+        border-radius: 10px;
+        /*All the shawdows that are given in the text of the body will have this specific shadow effect*/
+        text-shadow: 1px 3px royalblue;
+      }
+      
+     /*This area is responsible for all of the contents that are included in the unordered list*/
+      .header-menu ul{   
+        margin-top: 7px;
+        padding: 0 1px;
+        overflow: hidden;
+        animation-name: examples;
+        animation-duration: 6s;
+        position: relative;
+      }
+
+      /*This area is responsible for the list aspect of the navbar*/
+      .header-menu li{
+        display: inline-block;
+        padding: 1em;
+        list-style: none;
+        font-family: sans-serif;
+      }
+
+      /*The third child of the navbar is controled seperately here*/
+      .header-menu li:nth-child(3){
+        float: right;
+        text-shadow: 3px 3px black;
+        color: white;
+        padding: 0.5em;
+        font-size: x-large;
+        font-family: um;
+      }
+      /*This is a specialised font that I will use throughout my website where the font-family is the name that is used to identify it when applying it to another attribute*/
+      @font-face {
+        font-family: "um";
+        src: url(Feeling_Passionate.ttf);
+      }
+
+      /*This is a specialised font that I will use throughout my website where the font-family is the name that is used to identify it when applying it to another attribute*/
+      @font-face {
+        font-family: "um2";
+        src: url(CHECKBK0.TTF);
+      }
+
+      /*This is used to insure that the title for the nav bar stays level with the rest of the contents*/
+      .header-menu li p{
+        margin-top: -8px;
+      }
+
+      /*When you hover to the content in the footer it turns blue*/
+      footer a:hover{
+        color: blue;
+      }
+
+      /*This is an animation in which the whole page will turn to the left when in the 1st frame it will rotate the oposite way round so that in the second frame it will turn back to it's original position*/
+      @keyframes rotateInLeft {
+        from {
+             transform-origin: 0% 0%;
+             transform: rotateY(180deg);
+             }
+
+        to {
+           transform-origin: 0% 0%;
+           transform: rotateY(0deg);
+           }
+      }
+          /*This area is responsible for the animation that happens to the content in the navbar where in the 1st frame it will create an animation of the words falling down to the letters by going to the top and in the 2nd frame where it goes to it's original place */
+       @keyframes examples{
+            0%{color:black; top:-100px;}
+            25%{top:0px;}
+        }
+
+        /*This is responsible for the text in the footer to stay in the center but also that it's background colour is grey*/
+        footer {
+          text-align: center;
+          background: #ccc;
+        }
+
+        /*This is responsible for the main heading on two of the pages */
+        h1{
+          /*These ensure that the text stays in the center with the flex operation*/
+          text-align: center;
+          flex: auto;
+          /*Makes the letters very larger while also making text white*/
+          font-size: xx-large;
+          color: white;
+          /*specifies the specialised font that will be used*/
+          font-family: um;
+        }
+
+        /*Here after the a tag in the attribute field I added a special icon in css code so that it dispays without the need for an image*/
+        footer a:last-child::after{
+          content: '\2191';
+        }
+        
+        

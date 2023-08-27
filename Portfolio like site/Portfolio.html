@@ -1,0 +1,193 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Home Page</title>
+    <meta name="description" content="Portfolio">
+    <meta name="author" content="Vasileios Protopapas">
+    <link rel="stylesheet" href="style.css">
+    <style>
+      /*This area is responsible for keeping the flex area from overlapping with the aside*/
+      section {
+        flex: 0.9;
+        padding-right: 6px;
+        /*This is to keep all of the rest of the contents below the image and description by pushing it down*/
+        margin-top: 240px;
+      }
+      /*This area is responsible for keeping the flex area from overlapping with the section*/
+      aside {
+        flex: 0.4;
+        padding-left: 15px;
+        /*I added a solid grey line at the left of the aside to create a divide from it and the section*/
+        border-left: 1px solid #666;
+        color: white;
+      }
+
+      section{
+        /*Ensures that all text is white in the section and that the is a small gap to the left so it doesn't overlap with the border*/
+        color: white;
+        padding-left: 10px;
+        text-align: center;
+      }
+
+      /*This area is responsible for keeping the flex area from overlapping with the aside*/
+      .me{
+        position: absolute;
+        margin-left: 100px;
+        /*This moves the content either horizontally or vertically similarly to it's purpose for svg in this case it goes 70% downwards */
+        transform: translate(0,70%);
+      
+      }
+      /*This area is responsible for keeping the flex area from overlapping with the aside*/
+      .me > header{
+        color: white;
+        width: 300px;
+        animation-name: example;
+        animation-duration: 10s;
+        
+      }
+      /*This area is responsible for creating the animation for the header text next to the main image by creating an effect that will go from the edge of the screen to its original position*/
+      @keyframes example{
+          0%{color:black; left:-2000px; top:0px;}
+          25%{left:0px; top:0px;}
+      }
+
+      /*This area is responsible for the main image in the page*/
+      picture > img{
+        /*Ensures that it stays on top*/
+        position: absolute;
+        /*creates a border with a rounded shape*/
+        border-bottom-style: solid;
+        top: 80px;
+        border-radius: 100%;
+        width: 190px;
+        height:250px;
+        left: 20px;
+        padding: 10px;
+        box-sizing: border-box;
+        /*The border is a gradient which goes from purple to the right to progressivly red to the left*/
+        background-image: linear-gradient(to right, rgba(32, 7, 255, 0.336), rgba(255,0,0,1));
+        /*The fade in animation lasts 10 seconds*/
+        animation: fade 10s;
+        transition: width 2s, height 2s, transform 2s;
+        }
+
+      /*When you hover above the image it will create a transition of flipping at a full circle*/
+      picture img:hover{
+        transform: rotate(360deg);
+      }
+      /*This area is responsible for keeping all of the aspects of the aside lined up together*/
+      figure.links{
+        padding: 20px;
+        display: inline-block;
+        /* To horizontally center images and caption */
+        text-align: center;
+        /* The width of the container also implies margin around the images. */
+    }
+
+    /*This area is responsible for ensuring that the letter underneath the images in the aside*/
+    figcaption.caption {
+        /* Make the caption a block so it occupies its own line. */
+        display: block;
+        /*The animation name so that it can be initiated*/
+        animation-name: examples;
+        /*The animation lasts for 5 seconds*/
+        animation-duration: 5s;
+        position: relative;
+    }
+
+    /*This area is responsible for the animation that happens to the captions in the aside where in the 1st frame it will create an animation of the words falling down to the letters by going to the top and in the 2nd frame where it goes to it's original place */
+    @keyframes examples{
+          0%{color:transparent; top:-100px;}
+          25%{top:0px;}
+      }
+
+      /*This area is responsible for the images inside of the aside which will change the width and add an animation for the fade in effect but also the shrink effect*/
+      aside img{
+        width: 100px;
+        animation: fade 10s;
+        transition: width 2s, height 2s, transform 2s;
+      }
+      /*All of the h2 attributes inside of the aside will have their text centered*/
+      aside > h2{
+        text-align: center;
+      }
+      /*This area is responsible for the animation that created the fade in effect by having no opacity in the 1st frame and then bringing it back in the final frame*/
+      @keyframes fade {
+        0% {
+        opacity: 0;
+      }
+        100% {
+        opacity: 1;
+      }
+    }
+      /*When you put your mouse over the images in the aside area it will do a shrink by half of it's size*/
+      aside img:hover{
+        transform:scale(0.5,0.5);
+      }
+        /*Any first letter in has the h2 attribute and is in the article will have turned to orange, had an increase in font size and has a specialized font put on it*/
+       article h2::first-letter{
+        color: orange;
+        font-size: 200%;
+        font-family: um;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header-menu">
+      <nav>
+        <ul>
+          <li><a class="active" href="Portfolio.html">Home Page</a></li>
+          <li><a href="hobbies_page.html">Blog</a></li>
+          <li><p>My Prortfolio</p></li>
+          <li><a href="about_page.html">About</a></li>
+          <li><a href="form.html">Form</a></li>
+        </ul>
+      </nav>
+    </header>
+    <article class="me">
+      <header class="me">
+      <h2>Hello</h2>
+      <p>My Name is Vasileios Protopapas</p>
+    </header>
+    </article>
+    <picture>
+    <img src="vas.jpg" alt="My_Face">
+    </picture>
+    <section>
+      <article>
+        <header>
+          <h2>Welcome to my Portfolio</h2>
+          <p>I hope you enjoy your time here</p>
+        </header>
+      </article>
+      <article>
+        <header>
+          <h2>In this Portfolio</h2>
+          <p>You will find details about me, some blog posts I did, a form where you can sign up for my newsletter and on the left here you can check all of my social media links</p>
+        </header>
+      </article>
+    </section>
+    <aside>
+      <h2>Social Media Links:</h2>
+      <figure class="links">
+      <a href="https://twitter.com"><img src="Twitter.png" alt="twitter"></a>
+      <figcaption class="caption">Twitter</figcaption></figure>
+      <figure class="links">
+      <a href="https://instagram.com"><img src="Insta.png" alt="instagram"></a>
+      <figcaption class="caption">Instagram</figcaption></figure>
+      <figure class="links">
+      <a href="https://facebook.com"><img src="Facebook.png" alt="facebook"></a>
+      <figcaption class="caption">Facebook</figcaption></figure>
+      <figure class="links">
+      <a href="https://linkedin.com"><img src="linkedin.jpg" alt="linkedin"></a>
+      <figcaption class="caption">linkedin</figcaption></figure>
+    </aside>
+    <footer>
+      <a href="form.html">Contact Form</a>
+      <a href="about_page.html">About</a>
+      <a href="#top"> Back to the top</a>
+    </footer>
+  </body>
+</html>

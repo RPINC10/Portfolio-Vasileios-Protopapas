@@ -1,0 +1,226 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Blogs</title>
+    <meta name="description" content="Portfolio">
+    <meta name="author" content="Vasileios Protopapas">
+    <link rel="stylesheet" href="style.css">
+    <style>
+      /*This area is responsible for keeping the flex area from overlapping with the aside but also so that the content inside of it becomes lined up*/
+      section {
+        flex: 1;
+        color: white;
+        animation: fade 10s;
+      }
+
+      /*This area is responsible for keeping the flex area from overlapping with the section while also keeping it in level with the section to give more room for the title*/
+      aside {
+        margin-top: 229px;
+        flex: 0.4;
+        padding-left: 15px;
+        color: white;
+        animation: fade 10s;
+      }
+      
+      /*This keeps no margins at the top for the boxes for the blog posts*/
+      .firstpost h2,.secondpost h2{
+        margin-top: 0px;
+      }
+      
+      /*The images have their size attributes here*/
+      img{
+        width: 800px;
+        height: 400px;
+        padding-top: 20px;
+      }
+
+     /*This area is responsible for the animation that created the fade in effect by having no opacity in the 1st frame and then bringing it back in the final frame*/
+      @keyframes fade {
+        0% {
+        opacity: 0;
+      }
+        100% {
+        opacity: 1;
+      }
+    }
+      /*All of the p tags inside of the aside will be centered*/
+      aside p{
+        text-align: center;
+      }
+
+    /*This is for the main title of the page*/
+    .title{
+      padding: 30px;
+      font-size: 40px;
+      text-align: center;
+      padding-left: 400px;
+      background-color: black;
+    }
+    /*These are for the layout of the blog posts themselves which have a border as well as a gradient backgrouns and some spacing in form of padding and margins*/
+    .firstpost, .secondpost{
+      padding: 20px;
+      margin-top: 20px;
+      border: white 5px solid;
+      border-radius: 1%;
+      margin: 30px;
+      background-image: linear-gradient(to right, rgba(32, 7, 255, 0.336), rgba(255,0,0,1));
+    }
+
+    /*This ensures that the location for the time tag stays at the very top of that section*/
+    time{
+      position: absolute;
+    }
+
+    /*This is the background content for the aside which parallel the section posts*/
+    .card{
+      background-image: linear-gradient(to right, rgba(32, 7, 255, 0.336), rgba(255,0,0,1));
+      padding: 20px;
+      padding-top: 2px;
+      padding-right: 10px;
+      margin-top: 20px;
+      width: 370px;
+      font-size: 20px;
+      padding-bottom: 1px;
+      border: 3px inset white;
+    }
+
+    /*This is where the comments are annd the box containing them are controlled*/
+    #reader{
+    background:white; 
+    width:250px; 
+    padding:10px;
+    margin-bottom: 30px;
+    /*This helps to keep the content automatically to the left so it doesn't cross to the images*/
+    margin-left: auto;
+    color: black;
+    text-shadow: none;
+}
+
+/*This is a pointer for the comments section which appears next to the box as an arrow */
+.pointer{
+  background: white;
+  /*This ensures that the position of the square gives the illusion of an arrow by rotating it*/
+  transform: rotate(225deg);
+  /*This will ensure that it will stay in the correct position while also keeping the rest of the pointers in line*/
+  position: relative;
+  /*These are to make sure that the pointers are lined up correctly with the boxes*/
+  left: 90px;
+  top: 65px;
+  /*This ensures that the pointers are the right size to accomedate for the boxes */
+  width: 20px;
+  height: 20px;
+}
+
+/*This is for all of the img tags that are inside of a picture which help position them in the correct place so that they don't overlap with the rest of the content*/
+  picture img{
+    width: 90px;
+    height: 90px;
+    /*This will make sure that the images stay to the left*/
+    float: left;
+    margin-top: 30px;
+    margin-left: -15px;
+    border: white solid 2px;
+    padding-top: 0;
+  }
+
+  /*all of the h2 tags inside of content will not have a margin*/
+  .content  h2{
+    margin: 0;
+  }
+
+  /*An seperate animation will play for the images in the section*/
+  article img{
+    animation: move 4s ease-in-out;
+  }
+
+  /*This animation will create a zoom like effect where in the 1st frame the image will be minisucle and towards the end it end up becoming its standard size*/
+  @keyframes move {
+    0% {
+        transform: scale(0.1,0.1);
+    }
+    50% {
+        transform: scale(1,1);
+    }
+}
+    </style>
+  </head>
+  <body>
+    <header class="header-menu">
+      <nav>
+        <ul>
+          <li><a href="Portfolio.html">Home Page</a></li>
+          <li><a href="hobbies_page.html">Blog</a></li>
+          <li><p>My Prortfolio</p></li>
+          <li><a href="about_page.html">About</a></li>
+          <li><a href="form.html">Form</a></li>
+        </ul>
+      </nav>
+    </header>
+    <section>
+      <article>
+        <header class="title">
+          <h2>Blog Posts</h2>
+        </header>
+      </article>
+      <article>
+        <header class="firstpost">
+          <h2>Post 1</h2>
+          <time datetime="2020-11-01T16:38-05:00">November 1st 2020 16:38</time>
+          <img src="game.JPG" alt="game">
+          <p>Molestiae cupiditate inventore animi, maxime sapiente optio, illo est nemo veritatis repellat sunt doloribus nesciunt! Minima laborum magni reiciendis qui voluptate quisquam voluptatem soluta illo eum ullam incidunt rem assumenda eveniet eaque sequi deleniti tenetur dolore amet fugit perspiciatis ipsa, odit. Nesciunt dolor minima esse vero ut ea, repudiandae suscipit! </p>
+        </header>
+      </article>
+      <article>
+        <header class="secondpost">
+          <h2>Post 2</h2>
+          <time datetime="2020-11-01T16:38-05:00">November 3rd 2020 18:20</time>
+          <img src="pic2.jpg" alt="game">
+          <p>Molestiae cupiditate inventore animi, maxime sapiente optio, illo est nemo veritatis repellat sunt doloribus nesciunt! Minima laborum magni reiciendis qui voluptate quisquam voluptatem soluta illo eum ullam incidunt rem assumenda eveniet eaque sequi deleniti tenetur dolore amet fugit perspiciatis ipsa, odit. Nesciunt dolor minima esse vero ut ea, repudiandae suscipit!</p>
+        </header>
+      </article>
+    </section>
+    <aside>
+      <h2>Future Talking Points</h2>
+      <div class="card">
+      <details> 
+        <summary>Update 1</summary> 
+        <p>Requires a computer running an operating system. The computer must have some memory and ideally some kind of long-term storage. An input device as well as some form of output device is recommended.</p> 
+      </details>
+      <details> 
+        <summary>Update 2</summary> 
+        <p>A charger is needed in order to ensure that the laptop is in full working order. Once a charger is found then the laptop can be turned to for any further troubleshooting needed.</p> 
+      </details>
+      <details> 
+        <summary>Update 3</summary> 
+        <p>I have figured out the error that happened in my game. I forgot to double check over my code and there was a spelling mistake in one of the lines, Now the game is functioning as it should.</p> 
+      </details>
+    </div>
+    <h2>Recent Comments</h2>
+    <div class="card">
+      <div class="content">
+        <div class="comments">
+          <picture><img src="p1.jpg" alt="twitter"></picture>
+        <div class="pointer"></div>
+        <div id="reader">
+          How often do you post new articles? I really like your work and I would love to subscribe to your newsletter.</div>
+        <picture><img src="p2.jpg" alt="twitter"></picture>
+        <div class="pointer"></div>
+        <div id="reader">
+          I’m writing a new article, I want to make it around 2.5k words and I would love to know where to find inspiration for it and motivation as well. </div> 
+        <picture><img src="p3.jpg" alt="twitter"></picture>
+        <div class="pointer"></div>
+        <div id="reader">
+          I mean sure why not, it’s just that I’m not so sure about your point of view, there are some loopholes.</div>
+    </div>
+  </div>
+    </div>
+    </aside>
+    <footer>
+      <a href="form.html">Contact Form</a>
+      <a href="about_page.html">About</a>
+      <a href="#top"> Back to the top</a>
+    </footer>
+  </body>
+</html>            
