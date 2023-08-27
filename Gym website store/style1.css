@@ -1,0 +1,22 @@
+	body{
+		background-color: lightblue;}
+	
+	h1{
+		font-size: 2em; 
+		text-align: center; 
+		border: solid 2px blue; 
+		color: blue;
+		border-radius: 20px; 
+		box-shadow: 10px 10px 5px #888888;
+		text-align: center;
+		background-color: white;}
+		
+	h2{
+		text-align: center;}
+		
+	table{
+		 background-color: white;}
+	
+	#wrapper{
+		max-width : 650px ;
+		margin: 0 auto;}

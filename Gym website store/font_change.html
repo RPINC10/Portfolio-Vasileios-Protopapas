@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<style>
+</style>
+<body>
+<div id="myP">
+<p>This is a paragraph.</p>
+
+<button type="button" onclick="IncreaseFont()">Increase font size</button>
+<button type="button" onclick="DecreaseFont()">Decrease font size</button>
+
+<script>
+var page = document.getElementById("myP"); 
+var textSize = 20;
+
+function endResult(){
+	page.style.fontSize = textSize + 'px';
+}
+
+function IncreaseFont() {
+	++textSize;
+	endResult();
+}
+
+function DecreaseFont() {
+	--textSize;
+	endResult();
+}
+</script>
+</div>
+</body>
+</html>

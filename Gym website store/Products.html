@@ -1,0 +1,454 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Products page</title>
+<link href="Style.css" rel="Stylesheet" type="text/css">
+<style>
+
+h1{
+    text-align: center;
+    font-size:20px; 
+}
+h2{ 
+	font-weight: 900;
+    letter-spacing: .1em;
+	font-size: 4em;
+    text-shadow: .04em .04em 0 #9cb8b3;
+	text-align:center;
+	}
+
+p{
+	font-size: 12px;
+}
+
+.border{
+	padding: 5px;
+	border: 5px solid black;
+	border-color: #e62e00;
+	height:1670px;
+}
+
+.parallax {
+  background-image: url("aaa.jpg");
+
+  min-height: 500px; 
+
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+h5{
+	font-size:15px;
+}
+
+.card:hover {
+  -ms-transform: scale(1.01);
+  transform: scale(1.08); 
+}
+.card {
+  float:left;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 250px;
+  margin: 20px 50px 0 0;
+  text-align: center;
+  font-family: arial;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.card button {
+  border: none;
+  outline: 0;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 200px;
+  font-size: 18px;
+  border-radius: 8px;
+  margin: 0px 28px 0 0;
+  margin-right: 10px;
+}
+
+.card button:hover {
+  opacity: 0.7;
+  transform: scale(1.08); 
+}
+
+#detailsForm {
+	padding: 18px;
+	background-color: lightgrey;
+	top: -45px;
+	float:left;
+	position:relative;
+	left: 200px;
+}
+
+
+#placeOrder,#resetOrder {
+	float: right;
+	margin-right: 10px;
+}
+
+.container {
+	width: 1100px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+img {
+     width:  200px;
+	 height: 200px;
+}
+
+#pic{
+	width:100%;
+	height: auto;
+}
+
+#img-hover-zoom {
+  height: 10px; 
+  overflow: hidden;
+}
+
+#img-hover-zoom img {
+  transition: transform .5s ease;
+}
+
+#img-hover-zoom:hover img {
+  transform: scale(0.9);
+}
+.labelOrder {
+  background-color: #f2f2f2;
+  padding: 5px 20px 2px 20px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+  float: left;
+  width: 440px;
+  position: relative;
+  bottom: -46px;
+}
+
+
+.col-25 {
+  padding: 0 16px;
+}
+
+span.price {
+  float: right;
+}
+
+p.labelOrder{
+	font-size:17px;
+}
+
+#items{
+	font-size: 20px;
+}
+
+#footer{
+	margin-top:0px;
+}
+
+#word{
+	text-align:center;
+	font-size:30px;
+}
+
+#link{
+	text-align: center;
+}
+
+</style>
+<body id="backToTop">
+  <nav>
+        
+        
+        <div id="header">
+            <img id= "pic" src="Lift%20&%20Press%20(1).png" alt="Logo">
+        </div>
+        
+        <ul>
+            
+               <li class="active"></li>
+                <li><button class="button"><a href="Mainpage.html">Home</a></button></li>
+                <li><button class="button"><a href="Membership.html">Membership</a></button></li>
+                <li><button class="button"><a href="Products.html">Products</a></button></li>
+                <li><button class="button"><a href="Sessions.html">Sessions</a></button></li>
+                <li><button class="button"><a href="Sitemap.html"> Sitemap </a></button></li>
+                <li><button class="button"><a href="Equipments.html">Equipments</a></button></li>
+                <li><button class="button"><a href="Facilities.html"> Facilities</a></button></li>
+                <li><button class="button"><a href="Personal_Trainers.html"> Personal Trainers</a></button></li>
+                <li><button class="button"><a href="Surveys.html">Surveys</a></button></li>
+                <li><button class="button"><a href="Contact_us.html">Contact us</a></button></li>
+                
+                
+            
+        </ul>
+       
+        
+ </nav>
+<!-- Products list-->
+<div class="border">
+<h2>Products Page</h2>
+  <p style="font: 600 1.5em/1 'Raleway', sans-serif; text-align: center; text-transform: uppercase; letter-spacing: .5em;">Enjoy our different range of products to suit your gym loving needs</p>
+  <div id="link">
+  <a href="#bottom">Go to the bottom</a>
+  <a href="#productL">Go to the products list</a>
+  </div>
+  <hr>
+<div class="parallax"></div>
+<div class="container">
+<div class="card" id="product">
+  <div id="productL"><span id= "img-hover-zoom"><img id= "protein shake" src="proteinShake.jpg" alt="protshake"></span></div>
+  <h1>Protein Shake</h1>
+  <div class="price"><span id ="price1">£9.99</span></div>
+  <p>Click on the image for product description</p>
+	<label>Quantity:</label><select name="product" id="product1">
+		<option value= "0">0</option>
+		<option value= "1">1</option>
+		<option value= "2">2</option>
+		<option value= "3">3</option>
+	</select>
+</div>
+
+<div class="card" id="products">
+  <span id= "img-hover-zoom"><img id= "some" src="gloves.jpg" alt="gloves"></span>
+  <h1>Weight Lifting Gloves</h1>
+  <div class="price"><span id ="price2">£12.99</span></div>
+  <p>Click on the image for product description</p>
+  <label>Quantity:</label><select name="product" id="product2">
+		<option value= "0">0</option>
+		<option value= "1">1</option>
+		<option value= "2">2</option>
+		<option value= "3">3</option>
+	</select>
+</div>
+
+<div class="card" id="productss">
+  <span id= "img-hover-zoom"><img id="body" src="headphone.jpg" alt="headphones"></span>
+  <h1>Headphones</h1>
+  <div class="price"><span id ="price3">£21.99</span></div>
+  <p>Click on the image for product description</p>
+  <label>Quantity:</label><select name="product" id="product3">
+		<option value= "0">0</option>
+		<option value= "1">1</option>
+		<option value= "2">2</option>
+		<option value= "3">3</option>
+	</select>
+</div>
+
+<div class="card" id="productsss">
+  <span id= "img-hover-zoom"><img id="once" src="waterbottle.jpg" alt="waterbottle"></span>
+  <h1>Water Bottles</h1>
+  <div class="price"><span id ="price4">£12.99</span></div>
+  <p>Click on the image for product description</p>
+  <label>Quantity:</label><select name="product" id="product4">
+		<option value= "0">0</option>
+		<option value= "1">1</option>
+		<option value= "2">2</option>
+		<option value= "3">3</option>
+	</select>
+</div>
+
+<div class="card" id="productssss">
+  <span id= "img-hover-zoom"><img id="told" src="proteinbar.jpg" alt="proteinbar"></span>
+  <h1>Protein Bar</h1>
+  <div class="price"><span id ="price4">£0.99</span></div>
+  <p>Click on the image for product description</p>
+  <label>Quantity:</label><select name="product" id="product5">
+		<option value= "0">0</option>
+		<option value= "1">1</option>
+		<option value= "2">2</option>
+		<option value= "3">3</option>
+	</select>
+</div>
+
+<div class="card" id="productsssss">
+  <span id= "img-hover-zoom"><img id="me" src="book.jpg" alt="booklet"></span>
+  <h1>Workout booklet</h1>
+  <div class="price"><span id ="price4">£19.99</span></div>
+  <p>Click on the image for product description</p>
+  <label>Quantity:</label><select name="product" id="product6">
+		<option value= "0">0</option>
+		<option value= "1">1</option>
+		<option value= "2">2</option>
+		<option value= "3">3</option>
+	</select>
+</div>
+
+<!-- Order output-->
+ <div class="labelOrder"><h1>Your Order</h1>
+					<hr>
+                    <div id="items"> Items: </div>
+					<hr>
+                         <h5>Protein Shake:<span class="price"><input id="totalProteinCost"></span></h5>
+						 <h5>Weightlifting Gloves:<span class="price"><input id="totalWeightCost"></span></h5>
+                         <h5>Headphones:<span class="price"><input id="totalHeadCost"></span></h5>
+						 <h5>Water Bottles:<span class="price"><input id="totalWaterCost"></span></h5>
+						 <h5>Protein Bar:<span class="price"><input id="totalBarCost"></span></h5>
+                         <h5>Workout booklet:<span class="price"><input id="totalWorkoutCost"></span></h5>
+						 <hr>
+                         <h5>Total: <span class="price">£<input id="allCost"></span></h5>
+                </div>
+				</div>
+<!-- Name, order completion and reset-->           
+<div id="detailsForm">
+<div id="word">Checkout Form</div>
+<form name="myForm" action="/action_page.php" method="post">
+<label for="fname">Name: </label>
+<input id="name" name="fname">
+<span class="spacing">
+<button id="placeOrder">Place your order</button>
+<button id="resetOrder">Clear your order</button>
+</div>
+</div>
+<!-- editors page--> 
+</div>
+<!-- footer--> 
+<footer id="footer">
+
+
+<p3 id="bottom"> &copy; The Unstoppable Finest Gym </p3>
+<p4> <a href="Membership.html"> Join now </a></p4>
+<p5> <a href="Contact_us.html"> Contact Us </a></p5>
+<p6> <a href="Sitemap.html"> Sitemap </a></p6>
+<a href="#backToTop">Back to top</a>
+<a style="position: relative;" href="editor page vas.html">Page Developer</a>
+
+
+
+<h3>Social</h3>
+<div id="icons">
+<a href="https://www.instagram.com/accounts/emailsignup/?hl=en"><img class="Instagram" src="Insta.png"/></a>
+<a href="https://en-gb.facebook.com/r.php"><img class="Facebook"  src="Facebook.png"></a>
+<a href="https://www.youtube.co.uk"><img class="Youtube" src="Youtube.png"></a>
+<a href="https://twitter.com/i/flow/signup"><img class="Twitter"  src="Twitter.png"></a>
+</div>
+   
+
+     </footer>
+</form>
+    
+
+<script>
+		<!-- Product descriptions--> 
+		var x = document.getElementById("protein shake");
+		x.addEventListener("click",myFunction);
+
+		function myFunction() {
+			alert ("Drink your shake after your workout or as meal replacement for weight loss. Hot Vita Shakes are made of pure whey protein powder, amino acids and premium natural ingredients that stay aligned with all your fitness goals. Whether it’s weight loss, maintaining or building lean muscle")
+		}
+		
+		var y = document.getElementById("some");
+		y.addEventListener("click",myFunction2);
+
+		function myFunction2() {
+			alert ("Our premium weightlifting gloves are made of Neoprene and printed silicone for extra grip, plus an extra layer of specialized silicone material for maximum padding for palm and finger protection. LESS RIPS AND TARES, MORE PEPS AND PR'S ")
+		}
+		
+		var g = document.getElementById("body");
+		g.addEventListener("click",myFunction3);
+
+		function myFunction3() {
+			alert ("Memory-protein earmuffs, soft headband and 8.1 oz light weight make the DOQAUS Bluetooth headphones over-ear fit for long-time wearing. The stainless steel slider and upgraded larger diameter of ear cup allow you to find the perfect fit without constraint and provide excellent durability. ")
+		}
+		
+		var g = document.getElementById("once");
+		g.addEventListener("click",myFunction4);
+
+		function myFunction4() {
+			alert ("This bottle is specially designed with you, the active user in mind. Open the bottle with just one-click, slide your hand into the side strap and start drinking! The MAIGG bottle is perfect for Gym, Yoga, Runners, Athletes, MMA, Crossfit, Travel, Hiking, Cycling, Tennis, Camping or Office Use! ")
+		}
+		
+		var g = document.getElementById("told");
+		g.addEventListener("click",myFunction5);
+
+		function myFunction5() {
+			alert ("These tasteful bars contain only 160 kcal and as much as 20 grams of protein per bar. An ideal bar for those who want a lot of protein but want to avoid unnecessary sugars. Ideal after a (hard) training or match and as a healthy snack. ")
+		}
+		
+		var g = document.getElementById("me");
+		g.addEventListener("click",myFunction6);
+
+		function myFunction6() {
+			alert ("Using solely their bodyweight for resistance and relying on minimal equipment, readers will learn how to perform a range of exercises, such as push-ups, pull-ups, core exercises, and lower body exercises. Read this book, and develop the strongest and most capable physique ever. ")
+		}
+		
+		<!-- Value selector--> 
+		function getSelectedValue(selectList) {
+			return selectList[selectList.selectedIndex].value;
+		}
+		
+		<!-- Product quantity selector--> 
+		document.getElementById("resetOrder").addEventListener("click", function() {
+			var dropDown = document.getElementById("product1");
+			dropDown.selectedIndex = 0;
+			var dropDown1 = document.getElementById("product2");
+			dropDown1.selectedIndex = 0;
+			var dropDown2 = document.getElementById("product3");
+			dropDown2.selectedIndex = 0;
+			var dropDown3 = document.getElementById("product4");
+			dropDown3.selectedIndex = 0;
+			var dropDown4 = document.getElementById("product5");
+			dropDown4.selectedIndex = 0;
+			var dropDown5 = document.getElementById("product6");
+			dropDown5.selectedIndex = 0;
+			document.getElementById("totalProteinCost").value = "";
+			document.getElementById("totalWeightCost").value = "";
+			document.getElementById("totalHeadCost").value = "";
+			document.getElementById("totalWaterCost").value = "";
+			document.getElementById("totalBarCost").value = "";
+			document.getElementById("totalWorkoutCost").value = ""
+			document.getElementById("allCost").value = "";
+            this.form.reset();
+        });
+
+		<!-- Product calculation--> 
+		document.getElementById("placeOrder").addEventListener("click", function(){
+			var product1 = getSelectedValue(document.getElementById("product1"));
+			var product2 = getSelectedValue(document.getElementById("product2"));
+			var product3 = getSelectedValue(document.getElementById("product3"));
+			var product4 = getSelectedValue(document.getElementById("product4"));
+			var product5 = getSelectedValue(document.getElementById("product5"));
+			var product6 = getSelectedValue(document.getElementById("product6"));
+			var userName = document.getElementById("name").value;
+			var cost = parseInt(product1)*9.99;
+			var cost2 = parseInt(product2)*12.99;
+			var cost3 = parseInt(product3)*21.99;
+			var cost4 = parseInt(product4)*12.99;
+			var cost5 = parseInt(product5)*0.99;
+			var cost6 = parseInt(product6)*19.99;
+			document.getElementById("totalProteinCost").value = cost;
+			document.getElementById("totalWeightCost").value = cost2;
+			document.getElementById("totalHeadCost").value = cost3;
+			document.getElementById("totalWaterCost").value = cost4;
+			document.getElementById("totalBarCost").value = cost5;
+			document.getElementById("totalWorkoutCost").value = cost6;
+			overallPrice= cost+cost2+cost3+cost4+cost5+cost6;
+			document.getElementById("allCost").value = overallPrice;
+			<!-- Validation--> 
+			var noCheck=/^[0-9]+$/;
+			if ((overallPrice == 0 && userName == "")) {
+                alert("Your order is empty. Please select items before submitting your order.");
+			}
+			 if (userName == ""){
+				alert("Name field is left empty");
+				alert("Fill out field to complete order");
+				return false;
+			}else if (userName.match(noCheck)){
+				alert("Numerical values not allowed");
+				return false;
+			}else{
+			<!-- Ending message--> 
+				alert("Dear " +userName+ ", \n\nYou have ordered:"+"\n"+product1+ " Protein shakes"+ "\n"+product2+" Pair(s) of Weightlifting Gloves"+"\n"+product3+" Pair(s) of Headphones"+"\n"+product4+" Water bottles"+"\n"+product5+" Protein bar(s)"+"\n"+product6+" Workout book(s)"+ "\nYour total bill is £" + overallPrice+ ".");
+		    
+			}
+		});
+</script>
+</body>
+</html> 
