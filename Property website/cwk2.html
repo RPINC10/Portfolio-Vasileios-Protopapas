@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://code.jquery.com http://ajax.googleapis.com https://maps.googleapis.com 'unsafe-inline';">
+  <title>Estate Agent Website</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="propScript.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<style>
+  /*This is responsible for all the contents in the page so i wanted there to be no margins and also have a unique font for cohesion */
+      body{
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        margin: 0px;
+      }
+      /* This controls the text that is on top of the slider widget by making it gold and having a bold colour */
+    .goldSliderText {
+      border:0; color:#f6931f; font-weight:bold;
+    }
+     /*This controls what the navigation bar and the footer will look like with red as the chosen colour */
+    nav, footer{
+        background-color: red;
+        width: 100%;
+        }
+    
+      /*This controls how the items inside of the nav bar will appear with them not being in a list style and no seperation*/  
+    ul{
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+    }
+    /*This controls the words in the navbar by making sure that there is no underline underneath the words */
+    a{
+      text-decoration: none;
+    }
+
+    /*this controls the a attribute for the footer*/
+    footer {
+      text-align: center;
+    }
+
+    /*This controls the  li for the nav bar*/
+    nav li{
+      display: inline;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+     /*This controls the last individual li for the nav bar*/
+    nav li:last-child{
+      float: right;
+      margin-top: 3px;
+    }
+    
+    /*This shows that the list will be generated in an inline fashion*/
+    li{
+      display: inline;
+      display: flex;
+      flex-direction: column;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+    /*this controls the width of the images displayed */
+    img{
+      width: 300px;
+      margin-left: 0px;
+    }
+/*this controls the area where the properties will be displayed */
+    .property{
+        width: 900px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+/* This contols how buttons will work with them having rounded edges, blue colour, a unique font with a white colour*/
+    button{
+      border-radius: 15%;
+      background-color: blue;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 30px;
+      color: white;
+    }
+    /*This controls the section area of the searched properties where a border is given*/
+    ul section{
+      border: 2px solid black;
+      margin-bottom: 30px;
+    }
+     /* For smaller phones */
+     @media  (max-width:600px){
+      .property{
+        width:60%;
+        font-size: small;
+      }
+      img{
+        width: 50%;
+      }
+      
+      button{
+        font-size: 20px;
+      }
+
+      .ui-slider{
+        width: 90%;
+      }
+    }
+     /* For phones */
+     @media  (min-width:600px){
+      .property{
+        width:60%;
+        font-size: small;
+      }
+      img{
+        width: 50%;
+      }
+      
+      button{
+        font-size: 20px;
+      }
+
+      .ui-slider{
+        width: 90%;
+      }
+    }
+    /* For tablets */
+    @media  (min-width:768px){
+      .property{
+        width:60%;
+        font-size: small;
+      }
+      img{
+        width: 50%;
+      }
+      
+      button{
+        font-size: 20px;
+      }
+
+      .ui-slider{
+        width: 90%;
+      }
+    }
+
+    /* For desktop */
+    @media  (min-width:992px){
+      .property{
+        width:80%;
+        font-size: medium;
+      }
+      img{
+        width: 50%;
+      }
+
+      button{
+        font-size: 30px;
+      }
+
+      .ui-slider{
+        width: 90%;
+      }
+    }
+
+    /* For larger desktops */
+    @media  (min-width:1200px){
+      .property{
+        width:900px;
+        font-size: large;
+      }
+      img{
+        width: 50%;
+      }
+
+      button{
+        font-size: 40px;
+      }
+
+      .ui-slider{
+        width: 90%;
+      }
+    }
+    </style>
+    </head>
+<body>
+    <header id="top">
+        <nav>
+        <ul>
+        <li><a href="cwk2.html">Back to homepage</a></li>
+        <li><a href="#ting">Go to the bottom</a></li>
+        </ul>
+        </nav>
+    </header>
+    <header>
+    <h1>Property Search</h1>
+  </header>
+  <section>
+        <label for="amount">Price range:</label>
+        <input type="text" id="amount" readonly class="goldSliderText">
+        <div id="slider-range"></div>
+       
+    <header><h3>Property Added</h3></header>    
+    <select name="time" id="time">
+      <option value="" selected>Start Date</option>
+      <option value="January">January</option>
+      <option value="February">February</option>
+      <option value="March">March</option>
+      <option value="April">April</option>
+      <option value="May">May</option>
+      <option value="June">June</option>
+      <option value="July">July</option>
+      <option value="August">August</option>
+      <option value="September">September</option>
+      <option value="October">October</option>
+      <option value="November">November</option>
+      <option value="December">December</option>
+     <option value="Anytime">Anytime</option>
+    </select>
+
+    <select name="time2" id="time2">
+      <option value="" selected>End Date</option>
+      <option value="January">January</option>
+      <option value="February">February</option>
+      <option value="March">March</option>
+      <option value="April">April</option>
+      <option value="May">May</option>
+      <option value="June">June</option>
+      <option value="July">July</option>
+      <option value="August">August</option>
+      <option value="September">September</option>
+      <option value="October">October</option>
+      <option value="November">November</option>
+      <option value="December">December</option>
+     <option value="Anytime">Anytime</option>
+    </select>
+
+        <header><h2>Number of bedrooms</h2></header>
+        <select name="number" id="number">
+          <option value="" selected="selected">Min</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+        </select>
+
+        <select name="number2" id="number2">
+          <option value="" selected="selected">Max</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+        </select>
+        <h2>Property Type</h2>
+        <fieldset>
+          <legend>Select a Property: </legend>
+          <div id="list">
+          <label for="House">House</label>
+          <input type="radio" name="type" id="House" value="House"/>
+          <label for="Flat">Flat</label>
+          <input type="radio" name="type" id="Flat" value="Flat"/>
+          <label for="Townhouse">Townhouse</label>
+          <input type="radio" name="type" id="Townhouse" value="Townhouse"/>
+          <label for="All">All</label>
+          <input type="radio" name="type" id="All" value="All" checked/>
+        </div>
+        </fieldset>
+        <button id="submit">A button element</button>
+        <button id="viewFavourites">View Favourites list</button>
+        <button id="removeFavourites">Remove Favourites list</button>
+    
+      <div class="property">
+        <div id="prop">
+      </div>
+    </div>
+    <aside id="sidebar">
+      <h2>Favourites List</h2>
+      <div id="ting">
+      </div>
+      <footer>
+        <a href="#top">Go to the top</a>
+      </footer>
+      </aside>
+</section>
+      <script>
+//ui for the radio buttons for the property type
+$( function() {
+    $( "input[type='radio']" ).checkboxradio();
+  } );
+        // ui for the selectmenu for the number of rooms
+          $( function() {
+    $( "#number" )
+      .selectmenu()
+      .selectmenu( "menuWidget" )
+        .addClass( "overflow" );
+  } );
+// ui for the selectmenu for the number of rooms
+   $( function() {
+    $( "#number2" )
+      .selectmenu()
+      .selectmenu( "menuWidget" )
+        .addClass( "overflow" );
+  } );
+  // ui for the slider where there is a range created and that amount will be displayed on the page with is specified values given
+        $(function() {
+          $( "#slider-range" ).slider({
+            range: true,
+            min: 0,
+            max: 1000000,
+            values: [ 100000, 1000000 ],
+            slide: function( event, ui ) {
+              $( "#amount" ).val( "£" + ui.values[ 0 ] + " - £" + ui.values[ 1 ] );
+            }
+          });
+          $( "#amount" ).val( "£" + $( "#slider-range" ).slider( "values", 0 ) +
+            " - £" + $( "#slider-range" ).slider( "values", 1 ) );
+        });
+        // ui for the selectmenu for the dates 
+        $(function() {
+	  $("#time").selectmenu();
+
+});
+// ui for the selectmenu for the dates 
+$(function() {
+	  $("#time2").selectmenu();
+
+});
+// the JSON data for all the properties
+        var data={"properties": [
+        {
+            "id":"prop1",
+            "type":"House",
+            "bedrooms":3,
+            "price":750000,
+            "tenure":"Freehold",
+            "description":"Attractive three bedroom semi-detached family home situated within 0.5 miles of Petts Wood station with fast trains to London and within easy walking distance of local shops, schools, bus routes and National Trust woodland. The property comprises; two receptions, fitted 18'9 x 10'1 kitchen/breakfast room and conservatory. The property also benefits from having a utility room and cloakroom. To the first floor there are three bedrooms and a family bathroom with separate WC. Additional features include double glazing, gas central heating and a well presented interior...",
+            "location":"Petts Wood Road, Petts Wood, Orpington",
+            "picture":"images/prop1pic1small.jpg",
+            "url":"prop1Property.html",
+                  "added": {
+                    "month":"October",
+                          "day":12,
+                          "year":2020
+                  }
+              },
+          {
+            "id":"prop2",
+			      "type":"Flat",
+            "bedrooms":2,
+            "price":399995,
+            "tenure":"Freehold",
+            "description":"Presented in excellent decorative order throughout is this two double bedroom, two bathroom, garden flat. <br>The modern fitted kitchen is open plan to the living room which boasts solid wooden floors and includes integrated appliances including a dishwasher & a washing machine. This large open plan benefits from bi folding doors onto a secluded private courtyard garden. Both bedrooms are double sized, and the family bathroom boasts a matching three piece suite a shower attachment over the bath. There is also a separate wet room. There are walnut doors throughout and wiring for Sky TV/aerial points in the living room/kitchen and both bedrooms.<br>This apartment being only five years old, is still under a 10 year building guarantee...",
+            "location":"Crofton Road Orpington BR6",
+            "picture":"images/prop2pic1small.jpg",
+            "url":"prop2Property.html",
+                  "added": {
+                    "month":"September",
+                          "day":12,
+                          "year":2020
+                  }
+              },
+            {
+            "id":"prop3",
+			      "type":"Townhouse",
+            "bedrooms":5,
+            "price":999999,
+            "tenure":"Freehold",
+            "description":"The house is equipped with an old-fashioned kitchen and two average bathrooms, it also has a fairly small living room, five bedrooms, a spacious dining area, a lounge area and a snug basement.The two extensions are linked by a covered patio circling around half the house.The second floor is bigger than the first, which creates several overhanging parts on one side of the house. This floor has a different style than the floor below.The roof is low and triangular and is covered with black roof tiles. Two large chimneys sit at the side of the house. A few large windows let in just enough light to the rooms below the roof.The house itself is surrounded by a gorgeous garden with many hidden lights that make the garden come to life at night...",
+            "location":"Crofton Road Orpington BR6",
+            "picture":"images/prop3pic1small.jpg",
+            "url":"prop3Property.html",
+                  "added": {
+                    "month":"February",
+                          "day":17,
+                          "year":2020
+                  }
+              },
+            {
+            "id":"prop4",
+			      "type":"House",
+            "bedrooms":6,
+            "price":1000000,
+            "tenure":"Freehold",
+            "description":"The house is equipped with a new age kitchen and two bathrooms, it also has a large living room, six bedrooms, a spacious dining area, a sun room and a cozy storage room.The building is rectangular shaped. The house is fully surrounded by a covered patio.The second floor is smaller than the first, which allowed for a roof garden on two sides of the house. This floor has roughly the same style as the floor below. The roof is flat and is covered with black roof tiles. One small chimney sits at the side of the house. There are no windows on the roof. The house itself is surrounded by a modest, childsafe garden covered mostly in grass and with a children's playground in the center.",
+            "location":"Crofton Road Orpington BR6",
+            "picture":"images/prop4pic1small.jpg",
+            "url":"prop4Property.html",
+                  "added": {
+                    "month":"March",
+                          "day":20,
+                          "year":2020
+                      
+                  }
+              },
+              {
+            "id":"prop5",
+			      "type":"Townhouse",
+            "bedrooms":3,
+            "price":699995,
+            "tenure":"Freehold",
+            "description":"From the outside this house looks new. It has been built with cement covered in render and has granite decorations. Short, wide windows brighten up the house and have been added to the house in a very symmetric way. The house is equipped with a small kitchen and three bathrooms, it also has a spacious living room, three bedrooms, a small dining area, an office and a grand garage. The building is shaped like an I. The extension extends into stylish gardens reaching until the end of that side of the house. The second floor is smaller than the first, which allowed for several small balconies on one side of the house. This floor follows the same style as the floor below. The roof is low and v-shaped and is covered with brown wood shingles. Two small chimneys sit at either side of the house. A few large windows let in just enough light to the rooms below the roof. The house itself is surrounded by paved ground, with an outdoor eating and relaxing space and various potted plants.",
+            "location":"Crofton Road Orpington BR6",
+            "picture":"images/prop5pic1small.jpg",
+            "url":"prop5Property.html",
+                  "added": {
+                    "month":"August",
+                          "day":30,
+                          "year":2020
+                  }
+              },
+              {
+            "id":"prop6",
+			      "type":"Flat",
+            "bedrooms":1,
+            "price":499995,
+            "tenure":"Freehold",
+            "description":"This house has been built with red bricks and has white pine wooden decorations. Tall, rounded windows add to the overall style of the house and have been added to the house in a very symmetric way.The house is equipped with a large kitchen and one small bathroom, it also has a medium sized living room, one bedroom, a modest dining area and an office.The building is rectangular shaped. The house is partially surrounded by a covered patio on two sides.",
+            "location":"Crofton Road Orpington BR6",
+            "picture":"images/prop6pic1small.jpg",
+            "url":"prop6Property.html",
+                  "added": {
+                    "month":"January",
+                          "day":1,
+                          "year":2020
+                  }
+              },
+              {
+            "id":"prop7",
+			      "type":"House",
+            "bedrooms":4,
+            "price":745995,
+            "tenure":"Freehold",
+            "description":"From the outside this house looks gorgeous. It has been built with yellow pine wood and has tan brick decorations. Small, squared windows let in plenty of light and have been added to the house in a mostly asymmetric way.The house is equipped with an average kitchen, three bathrooms, it also has a cozy living room, four bedrooms, a grand dining room, a study and a large garage.The building is rectangular shaped. The house is partially surrounded by a garden path on two sides.The second floor is smaller than the first, which allowed for a large garden at the back of the house. This floor has a slightly different style than the floor below.The roof is low and pyramid shaped and is covered with dark ceramic tiles. One small chimney sits at the side of the house. There are no windows on the roof.The house itself is surrounded by paved ground, with a pool at the backside of the house...",
+            "location":"Crofton Road Orpington BR6",
+            "picture":"images/prop7pic1small.jpg",
+            "url":"prop7Property.html",
+                  "added": {
+                    "month":"November",
+                          "day":17,
+                          "year":2020
+                  }
+              }
+          ]}
+        </script>
+</body>
+</html>

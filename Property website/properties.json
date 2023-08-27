@@ -1,0 +1,115 @@
+{"properties": [
+    {
+        "id":"prop1",
+        "type":"House",
+        "bedrooms":3,
+        "price":750000,
+        "tenure":"Freehold",
+        "description":"Attractive three bedroom semi-detached family home situated within 0.5 miles of Petts Wood station with fast trains to London and within easy walking distance of local shops, schools, bus routes and National Trust woodland. The property comprises; two receptions, fitted 18'9 x 10'1 kitchen/breakfast room and conservatory. The property also benefits from having a utility room and cloakroom. To the first floor there are three bedrooms and a family bathroom with separate WC. Additional features include double glazing, gas central heating and a well presented interior...",
+        "location":"Petts Wood Road, Petts Wood, Orpington",
+        "picture":"images/prop1pic1small.jpg",
+        "url":"prop1Property.html",
+              "added": {
+                "month":"October",
+                      "day":12,
+                      "year":2020
+              }
+          },
+      {
+        "id":"prop2",
+              "type":"Flat",
+        "bedrooms":2,
+        "price":399995,
+        "tenure":"Freehold",
+        "description":"Presented in excellent decorative order throughout is this two double bedroom, two bathroom, garden flat. <br>The modern fitted kitchen is open plan to the living room which boasts solid wooden floors and includes integrated appliances including a dishwasher & a washing machine. This large open plan benefits from bi folding doors onto a secluded private courtyard garden. Both bedrooms are double sized, and the family bathroom boasts a matching three piece suite a shower attachment over the bath. There is also a separate wet room. There are walnut doors throughout and wiring for Sky TV/aerial points in the living room/kitchen and both bedrooms.<br>This apartment being only five years old, is still under a 10 year building guarantee...",
+        "location":"Crofton Road Orpington BR6",
+        "picture":"images/prop2pic1small.jpg",
+        "url":"prop2Property.html",
+              "added": {
+                "month":"September",
+                      "day":12,
+                      "year":2020
+              }
+          },
+        {
+        "id":"prop3",
+              "type":"Townhouse",
+        "bedrooms":5,
+        "price":999999,
+        "tenure":"Freehold",
+        "description":"The house is equipped with an old-fashioned kitchen and two average bathrooms, it also has a fairly small living room, five bedrooms, a spacious dining area, a lounge area and a snug basement.The two extensions are linked by a covered patio circling around half the house.The second floor is bigger than the first, which creates several overhanging parts on one side of the house. This floor has a different style than the floor below.The roof is low and triangular and is covered with black roof tiles. Two large chimneys sit at the side of the house. A few large windows let in just enough light to the rooms below the roof.The house itself is surrounded by a gorgeous garden with many hidden lights that make the garden come to life at night...",
+        "location":"Crofton Road Orpington BR6",
+        "picture":"images/prop3pic1small.jpg",
+        "url":"prop3Property.html",
+              "added": {
+                "month":"February",
+                      "day":17,
+                      "year":2020
+              }
+          },
+        {
+        "id":"prop4",
+              "type":"House",
+        "bedrooms":6,
+        "price":1000000,
+        "tenure":"Freehold",
+        "description":"The house is equipped with a new age kitchen and two bathrooms, it also has a large living room, six bedrooms, a spacious dining area, a sun room and a cozy storage room.The building is rectangular shaped. The house is fully surrounded by a covered patio.The second floor is smaller than the first, which allowed for a roof garden on two sides of the house. This floor has roughly the same style as the floor below. The roof is flat and is covered with black roof tiles. One small chimney sits at the side of the house. There are no windows on the roof. The house itself is surrounded by a modest, childsafe garden covered mostly in grass and with a children's playground in the center.",
+        "location":"Crofton Road Orpington BR6",
+        "picture":"images/prop4pic1small.jpg",
+        "url":"prop4Property.html",
+              "added": {
+                "month":"March",
+                      "day":20,
+                      "year":2020
+                  
+              }
+          },
+          {
+        "id":"prop5",
+              "type":"Townhouse",
+        "bedrooms":3,
+        "price":699995,
+        "tenure":"Freehold",
+        "description":"From the outside this house looks new. It has been built with cement covered in render and has granite decorations. Short, wide windows brighten up the house and have been added to the house in a very symmetric way. The house is equipped with a small kitchen and three bathrooms, it also has a spacious living room, three bedrooms, a small dining area, an office and a grand garage. The building is shaped like an I. The extension extends into stylish gardens reaching until the end of that side of the house. The second floor is smaller than the first, which allowed for several small balconies on one side of the house. This floor follows the same style as the floor below. The roof is low and v-shaped and is covered with brown wood shingles. Two small chimneys sit at either side of the house. A few large windows let in just enough light to the rooms below the roof. The house itself is surrounded by paved ground, with an outdoor eating and relaxing space and various potted plants.",
+        "location":"Crofton Road Orpington BR6",
+        "picture":"images/prop5pic1small.jpg",
+        "url":"prop5Property.html",
+              "added": {
+                "month":"August",
+                      "day":30,
+                      "year":2020
+              }
+          },
+          {
+        "id":"prop6",
+              "type":"Flat",
+        "bedrooms":1,
+        "price":499995,
+        "tenure":"Freehold",
+        "description":"This house has been built with red bricks and has white pine wooden decorations. Tall, rounded windows add to the overall style of the house and have been added to the house in a very symmetric way.The house is equipped with a large kitchen and one small bathroom, it also has a medium sized living room, one bedroom, a modest dining area and an office.The building is rectangular shaped. The house is partially surrounded by a covered patio on two sides.",
+        "location":"Crofton Road Orpington BR6",
+        "picture":"images/prop6pic1small.jpg",
+        "url":"prop6Property.html",
+              "added": {
+                "month":"January",
+                      "day":1,
+                      "year":2020
+              }
+          },
+          {
+        "id":"prop7",
+              "type":"House",
+        "bedrooms":4,
+        "price":745995,
+        "tenure":"Freehold",
+        "description":"From the outside this house looks gorgeous. It has been built with yellow pine wood and has tan brick decorations. Small, squared windows let in plenty of light and have been added to the house in a mostly asymmetric way.The house is equipped with an average kitchen, three bathrooms, it also has a cozy living room, four bedrooms, a grand dining room, a study and a large garage.The building is rectangular shaped. The house is partially surrounded by a garden path on two sides.The second floor is smaller than the first, which allowed for a large garden at the back of the house. This floor has a slightly different style than the floor below.The roof is low and pyramid shaped and is covered with dark ceramic tiles. One small chimney sits at the side of the house. There are no windows on the roof.The house itself is surrounded by paved ground, with a pool at the backside of the house...",
+        "location":"Crofton Road Orpington BR6",
+        "picture":"images/prop7pic1small.jpg",
+        "url":"prop7Property.html",
+              "added": {
+                "month":"November",
+                      "day":17,
+                      "year":2020
+              }
+          }
+      ]}

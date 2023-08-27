@@ -1,0 +1,711 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://code.jquery.com http://ajax.googleapis.com https://maps.googleapis.com 'unsafe-inline';">
+    <title>Estate Agent Website</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="propScript.js"></script>
+    <script src="jquery-ui-1.9.0.custom.min.js"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+
+<style>
+  /* This controls the text that is on top of the slider widget by making it gold and having a bold colour */
+    .goldSliderText {
+      border:0; color:#f6931f; font-weight:bold;
+    }
+
+    /*This controls what the navigation bar will look like with red as the chosen colour */
+    nav, footer{
+        background-color: red;
+        width: 100%;
+        }
+    /*This controls how the items inside of the nav bar will appear with them not being in a list style and no seperation*/  
+    ul{
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+/*This controls the words in the navbar by making sure that there is no underline underneath the words */
+    a{
+      text-decoration: none;
+    }
+
+    /*this controls the a attribute for the footer*/
+    footer{
+      text-align: center;
+    }
+    /*This shows that the list will be generated in an inline fashion*/
+    li{
+      display: inline;
+    }
+
+    /*This controls the  li for the nav bar*/
+    nav li{
+      display: inline;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+/*this controls the a attribute for the footer*/
+    footer a{
+      text-align: center;
+    }
+    
+/* This contols how buttons will work with them having rounded edges, blue colour, a unique font with a white colour*/
+    button{
+      border-radius: 15%;
+      background-color: blue;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 40px;
+      color: white;
+    }
+    /* Set the size of the div element that contains the map */
+#map {
+  height: 400px;
+  /* The height is 400 pixels */
+  width: 100%;
+  /* The width is the width of the web page */
+}
+
+/*This is responsible for the sidebar that holds the favourites list which has a fixed position so that the user can see it at all times when scrolling down while also ensuring that it position stays to the top right with a black border and background*/
+#sidebar{
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  width: 300px;
+  background: #f5f5f5;
+  border: 1px solid #e1e1e1;
+}
+
+/*This is responsible for all the contents in the page so i wanted there to be no margins and also have a unique font for cohesion */
+body {
+  margin: 0;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+/*when you hover over an image a shadow will appear which will have a blue colour*/
+img:hover {
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+
+/*In the row and column classes of the page i wanted there to be some padding for spacing*/
+.row > .column {
+  padding: 0 8px;
+}
+
+/*This keeps the modal images and the rest of the page from merging with each other*/
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Each column next to the images will have a gap towards the left*/
+.column {
+  float: left;
+  width: 25%;
+}
+
+/* The Modal (background) is the part that opens up after an image is clicked so the background will be black as well as having a z-index and fixed positioning so that t doesnt overlap with the page previous to it */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: black;
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  width: 90%;
+  max-width: 620px;
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+/*Inside of the modal image the cross at the edge of the page will change colour when hovering and focused upon*/
+.close:hover,
+.close:focus {
+  color: #999;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/*Nothing will be displayed here*/
+.mySlides {
+  display: none;
+}
+
+/*This will change how the curson will appear in this class*/
+.cursor {
+  cursor: pointer;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #000000;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/*The images will have a bottom margin of -4 meaning that there will be little spacing under each image*/
+img {
+  margin-bottom: -4px;
+}
+
+/*The images inside of the modal content will have increased width and height */
+.modal img{
+  width: 620px;
+  height: 411px;
+}
+
+/*This controls how the images will show on the page*/
+.column img{
+  width: 300px;
+  margin-bottom: 20px;
+  height: 197px;
+}
+
+/*the demo class is moslty opaque*/
+.demo {
+  opacity: 0.6;
+}
+
+/*when the demo class is hovered then it becomes opaque*/
+.active,
+.demo:hover {
+  opacity: 1;
+}
+
+/*this controls the duration for the image hovers shadow*/
+img.hover-shadow {
+  transition: 0.3s;
+}
+
+/*this controls the hovered shadows properties*/
+.hover-shadow:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/*Ensures that the is no spacing at the top of the sidebars words*/
+h3.wish_list_heading{
+  margin: 0px;
+}
+ /* Changes the size properties For smaller phones */
+ @media  (max-width:600px){
+      #tabs{
+        width:98%;
+        font-size: small;
+      }
+      .column img{
+        width: 90%;
+        margin: 2.5%;
+        height: 90px;
+      }
+
+      h1{
+        font-size: small;
+      }
+
+      #sidebar .name{
+        font-size: small;
+      }
+      #sidebar{
+        width: 10%;
+      }
+      
+      button{
+        font-size: 20px;
+      }
+    }
+     /* Changes the size properties For phones */
+     @media  (min-width:600px){
+      #tabs{
+        width:99%;
+        font-size: small;
+      }
+      .column img{
+        width: 85%;
+        margin: 2.5%;
+        height: 107px;
+      }
+
+      #sidebar{
+        width: 20%;
+      }
+      
+      button{
+        font-size: 20px;
+      }
+    }
+    /* Changes the size properties For tablets */
+    @media  (min-width:768px){
+      #tabs{
+        width:99%;
+        font-size: small;
+      }
+      .column img{
+        width: 100%;
+        margin: 2.5%;
+        height: 197px;
+      }
+      #sidebar{
+        width: 15%;
+      }
+      button{
+        font-size: 20px;
+      }
+    }
+
+    /* Changes the size properties For desktop */
+    @media  (min-width:992px){
+      #tabs{
+        width:99%;
+        font-size: medium;
+      }
+      .column img{
+        width: 100%;
+        margin: 2.5%;
+        height: 197px;
+      }
+
+      #sidebar{
+        width: 12%;
+      }
+
+      button{
+        font-size: 30px;
+      }
+    }
+
+    /* Changes the size properties For larger desktops */
+    @media  (min-width:1200px){
+      #tabs{
+        width:99%;
+        font-size: xx-large;
+      }
+      .column img{
+        width: 100%;
+        margin: 2.5%;
+        height: 240px;
+      }
+
+      #sidebar{
+        width: 10%;
+      }
+
+      button{
+        font-size: 40px;
+      }
+    }
+    </style>
+    </head>
+<body>
+    <!-- Your HTML here -->
+    <header id="top">
+        <nav>
+        <ul>
+          <li><a href="cwk2.html">Back to homepage</a></li>
+          <li><a href="#bottom">Go to the bottom</a></li>
+        </ul>
+        </nav>
+    </header>
+    <p id="prop3"></p>
+    <h1>Property 3</h1>
+      <aside id="sidebar">
+          <div class="basket">
+            <div class="wish_list_heading">
+              <div class="basket_list">
+                  <div class="head">
+                      <span class="name">Favourites List</span>
+                  </div>
+                  <ul>
+                    
+                  </ul>
+              </div>
+            </div>
+            </div>
+      </aside>
+<div id="d">
+  
+<div class="row">
+  <div class="column">
+    <img src="images/prop3pic1small.jpg" alt="pic1" onclick="openModal();currentSlide(1)" class="hover-shadow cursor">
+  </div>
+  <div class="column">
+    <img src="images/prop1pic2small.jpg"  alt="pic2" onclick="openModal();currentSlide(2)" class="hover-shadow cursor">
+  </div>
+  <div class="column">
+    <img src="images/prop2pic3small.jpg"  alt="pic3" onclick="openModal();currentSlide(3)" class="hover-shadow cursor">
+  </div>
+  <div class="column">
+    <img src="images/prop1pic4small.jpg" alt="pic4" onclick="openModal();currentSlide(4)" class="hover-shadow cursor">
+  </div>
+  <div class="column">
+    <img src="images/prop2pic5small.jpg" alt="pic5" onclick="openModal();currentSlide(4)" class="hover-shadow cursor">
+  </div>
+  <div class="column">
+    <img src="images/prop1pic6small.jpg" alt="pic6" onclick="openModal();currentSlide(4)" class="hover-shadow cursor">
+  </div>
+</div>
+
+<div id="myModal" class="modal">
+  <span class="close cursor" onclick="closeModal()">&times;</span>
+  <div class="modal-content">
+
+    <div class="mySlides">
+      <div class="numbertext">1 / 6</div>
+      <img src="images/prop3pic1.jpg" alt="pic1_pt2">
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">2 / 6</div>
+      <img src="images/prop1pic2.jpg" alt="pic2_pt2">
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">3 / 6</div>
+      <img src="images/prop2pic3.jpg" alt="pic3_pt2">
+    </div>
+    
+    <div class="mySlides">
+      <div class="numbertext">4 / 6</div>
+      <img src="images/prop1pic4.jpg" alt="pic4_pt2">
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">5 / 6</div>
+      <img src="images/prop2pic5.jpg" alt="pic5_pt2">
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">6 / 6</div>
+      <img src="images/prop1pic6.jpg" alt="pic6_pt2">
+    </div>
+    
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+
+  </div>
+  
+</div>
+<button class="save">Save to favourites</button>
+  <div id="tabs">
+    <ul>
+      <li><a href="#tabs-1">Description</a></li>
+      <li><a href="#tabs-2">Floor Plan</a></li>
+      <li><a href="#tabs-3">Map</a></li>
+    </ul>
+    <div id="tabs-1">
+      <p>The house is equipped with an old-fashioned kitchen and two average bathrooms, it also has a fairly small living room, five bedrooms, a spacious dining area, a lounge area and a snug basement.The two extensions are linked by a covered patio circling around half the house.The second floor is bigger than the first, which creates several overhanging parts on one side of the house. This floor has a different style than the floor below.The roof is low and triangular and is covered with black roof tiles. Two large chimneys sit at the side of the house. A few large windows let in just enough light to the rooms below the roof.The house itself is surrounded by a gorgeous garden with many hidden lights that make the garden come to life at night</p>
+    </div>
+    <div id="tabs-2">
+      <img src="images/prop1Plan.jpg" alt="plan">
+    </div>
+    <div id="tabs-3">
+      <div id="map"></div>
+    </div>
+  </div>
+  <footer id="bottom">
+    <a href="#top">Go to the top</a>
+  </footer>
+  </div>
+  <script>
+// this is responsible for the modal content 
+    function openModal() {
+  document.getElementById("myModal").style.display = "block";
+}
+
+function closeModal() {
+  document.getElementById("myModal").style.display = "none";
+}
+
+// here it creates and index for each slide so that when one is showed it will add a number to the next one and store the number of the current slide
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+//here it will differentiate between the slides so that it will display the correct ones and ensure that the next image can be displayed
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+}
+// ui for the tabs
+      $( function() {
+    $( "#tabs" ).tabs();
+  } );
+
+  // Initialize and add the map
+function initMap() {
+  // The location of Uluru
+  const pWood = { lat: 51.38944, lng: 0.077299 };
+  // The map, centered at Uluru
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 20,
+    center: pWood,
+  });
+  // The marker, positioned at Uluru
+  const marker = new google.maps.Marker({
+    position: pWood,
+    map: map,
+  });
+}
+$(function () {
+
+// jQuery UI Draggable
+$("#d").draggable({
+  
+
+  // brings the item back to its place when dragging is over
+  revert:true,
+
+  // once the dragging starts, we decrease the opactiy of other items
+  // Appending a class as we do that with CSS
+  drag:function () {
+    $(this).addClass("active");
+    $(this).closest("#product").addClass("active");
+  },
+
+  // removing the CSS classes once dragging is over.
+  stop:function () {
+    $(this).removeClass("active").closest("#product").removeClass("active");
+  }
+});
+
+    // jQuery Ui Droppable variable
+$(".basket").droppable({
+
+  // The class that will be appended to the to-be-dropped-element (basket)
+  activeClass:"active",
+
+  // The class that will be appended once we are hovering the to-be-dropped-element (basket)
+  hoverClass:"hover",
+
+  // The acceptance of the item once it touches the to-be-dropped-element basket
+
+  tolerance:"touch",
+  drop:function (event, ui) {
+
+    var basket = $(this),
+        move = ui.draggable,
+        name = document.getElementsByTagName("p")[0].id;
+        itemId = basket.find();
+    // This is where the key for the local storage is created and then it checks that the field is empty so that it can create and array 
+        try{
+        $(this).attr("disabled",true);
+        var myFavouriteProp = JSON.parse(localStorage.getItem("favProp"));
+        if (myFavouriteProp == null){
+          myFavouriteProp = [];
+          alert("Saved to your favourites list");
+        }
+        //If the array is already filled with the same values then it will check to see if it mateches with the id given and keep the array from filling in that name again
+        if(myFavouriteProp != null) {
+          for ( var j = 0; j < myFavouriteProp.length; j++) {
+            
+            if ( name == myFavouriteProp[j]) {
+              
+              alert("This property is already in your favourites"); 
+              myFavouriteProp = [];
+            }
+          }
+        }
+        //the id for the page is stored in the local storage here and is now a value and is now also added to the basket after being dragged
+        myFavouriteProp.push(name);
+        localStorage.setItem("favProp",JSON.stringify(myFavouriteProp));
+        addBasket(basket, move);
+      }
+      catch(e){
+        if (e == QUOTA_EXCEEDED_ERR){
+          console.log("Error: Storage exeeded");
+        }
+        else{
+          console.log("Error: Saving to Storage");
+        }
+      }
+  }
+});
+
+    // This function runs once an item is added to the basket
+    function addBasket(basket, move) {
+  basket.find("ul").append('<li id="' + "favList"+ '">'
+      + '<span class="name">' + "Property 3"+ '</span>'
+      + '<button class="delete">&#10005;</button>');
+}
+
+
+    // The function that is triggered once delete button is pressed
+    $(".basket ul li button.delete").live("click", function () {
+      var myFavouriteProp = JSON.parse(localStorage.getItem("favProp"));
+    $(this).closest("li").remove();
+			
+    var Remove = document.getElementsByTagName("p")[0].id;
+			
+      myFavouriteProp=JSON.parse(localStorage.getItem("favProp"));
+     
+     //it will check that if the array has the value in the local storage then it will remove that value from the array and keep it empty so that it can be filled again and saved to the local storage
+     if(myFavouriteProp != null) {
+       for ( var j = 0; j < myFavouriteProp.length; j++) {
+         
+         if ( Remove == myFavouriteProp[j]) {
+           
+           alert("This Property has been removed");
+           delete myFavouriteProp[j];
+           
+           localStorage.setItem("favProp", JSON.stringify(myFavouriteProp));
+             myFavouriteProp[j] = [];
+						
+					}
+				}
+			}
+});
+// this controls the stylings for the sidebar when clicked to expand
+$(".wish_list_heading").on("click", function() {
+    if (!$(this).hasClass("up")) {
+      $("#sidebar").css("height", "100px");
+      $(this).addClass("up");
+      $("#sidebar").css("overflow", "auto");
+    } else {
+      $("#sidebar").css("height", "20px");
+      $(this).removeClass("up");
+      $("#sidebar").css("overflow", "hidden");
+    }
+  });
+
+  // Makes the basket draggable so that you can drag out the property from there
+  $(".basket").draggable({
+  
+
+  // brings the item back to its place when dragging is over
+  revert:true,
+
+  // once the dragging starts, we decrease the opactiy of other items
+  // Appending a class as we do that with CSS
+  drag:function () {
+    $(this).addClass("active");
+    $(this).closest("#product").addClass("active");
+  },
+
+  // removing the CSS classes once dragging is over.
+  stop:function () {
+    $(this).removeClass("active").closest("#product").removeClass("active");
+  }
+});
+
+// Makes the page droppable so that the removal process can occur
+$("#d").droppable({
+
+// The class that will be appended to the to-be-dropped-element (basket)
+activeClass:"active",
+
+// The class that will be appended once we are hovering the to-be-dropped-element (basket)
+hoverClass:"hover",
+
+// The acceptance of the item once it touches the to-be-dropped-element basket
+// For different values http://api.jqueryui.com/droppable/#option-tolerance
+tolerance:"touch",
+drop:function (event, ui) {
+  var basket = $(this),
+        move = ui.draggable,
+        name = document.getElementsByTagName("p")[0].id;
+        itemId = basket.find();
+
+         // The function that is triggered once the item is dragged out of the basket
+
+      var myFavouriteProp = JSON.parse(localStorage.getItem("favProp"));
+      $(".basket ul li").remove();
+			
+			var Remove = document.getElementsByTagName("p")[0].id;
+			
+			 myFavouriteProp=JSON.parse(localStorage.getItem("favProp"));
+			
+			//it will check that if the array has the value in the local storage then it will remove that value from the array and keep it empty so that it can be filled again and saved to the local storage
+			if(myFavouriteProp != null) {
+				for ( var j = 0; j < myFavouriteProp.length; j++) {
+					
+					if ( Remove == myFavouriteProp[j]) {
+            
+            alert("This Property has been removed");
+						delete myFavouriteProp[j];
+						
+						localStorage.setItem("favProp", JSON.stringify(myFavouriteProp));
+              myFavouriteProp[j] = [];
+					}
+				}
+			}
+}
+});
+});
+  </script>
+</body>
+</html>
