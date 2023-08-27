@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link href="style.css" rel="Stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    
+      <style>
+        * {
+  box-sizing: border-box;
+}
+
+        #myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+         #btn1,#btn2,#btn3,#btn4 {
+            width: 300px;
+            background-color: yellow;
+            color: black;
+            text-align: center;
+            font-size: 15px;
+            padding: 20px;
+            border-radius: 15px;
+            border: 3px dashed blue;
+            transition: width 2s, transform 2s;
+         }
+         #btn1:hover,#btn2:hover,#btn3:hover,#btn4:hover {
+            background-color: orange;
+            color: black;
+            border: 3px solid blue;
+            width: 350px;
+         }
+
+      .icon-description{
+           width: 20%;
+            margin: auto;
+           border-radius: 15px;
+           border: 3px solid black;
+      }
+
+      article{
+        padding: 1%;
+      }
+
+      @media screen and (max-width: 1024px) {
+        .icon-description{
+           width: 40%;
+      }
+    }
+      @media screen and (max-width: 1000px) {
+        .icon-description{
+           width: 40%;
+      }
+    }
+      @media screen and (max-width: 620px) {
+        .icon-description{
+           width: 80%;
+      }
+    }
+
+    
+.row {
+  margin: 8px -16px;
+}
+
+/* Add padding BETWEEN each column */
+.row,
+.row > .column {
+  padding: 8px;
+}
+
+/* Create four equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 50%;
+}
+
+/* Clear floats after rows */ 
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Content */
+.content {
+  background-color: white;
+  padding: 10px;
+  height: 620px;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 900px) {
+  .column {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+#dialog,#dialog1,#dialog2,#dialog3{
+  position: relative;
+  background-color: green;
+  color: white;
+}
+
+.img{
+  width: 200px;
+  height: 300px;
+}
+</style>
+</head>
+<body>
+  <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+<ul class="topnav">
+  <li><a class="active" href="Untitled-1.html">Home</a></li>
+  <li class="right"><a href="presentation.html">Login</a></li>
+</ul>
+<div class=buttons>
+  <h3>Use the controls to turn on text to speech</h3>
+  <button id=play></button> &nbsp;
+  <button id=pause></button> &nbsp;
+  <button id=stop></button>
+</div>
+<h1>Choose a topic</h1>
+  <h2>Click on an image and a description will show on the screen</h2>
+<article>
+  
+<!-- Portfolio Gallery Grid -->
+<div class="row">
+  <div class="column">
+    <div class="content">
+      <img class="img" data-id="#dialog" src="internet.png" alt="Internet basics" style="width:100%" display="block">
+      <div class="dialog"  id="dialog">
+        <p>In this image there is an elderly person using their laptop</p>
+          </div>
+      <h3>Internet basics</h3>
+      <p>Here we will go through the basics of being connected to the internet</p>
+      <a href="a.html">
+        <button id = "btn1">Internet basics</button></a>
+    </div>
+  </div>
+  <div class="column">
+    <div class="content">
+    <img class="img" data-id="#dialog1" src="online banking.jpg" alt="Online Finance" style="width:100%">
+    <div class="dialog"  id="dialog1">
+      <p>In this image there is an elderly person using their laptop while also holding their credit card inquiring their bank about their finances</p>
+        </div>
+      <h3>Online Finances</h3>
+      <p>Here we wiil go through all the basics that are crutial when going through with online banking and all of it's advantages and dangers</p>
+      <a href="a.html">
+      <button id = "btn2">Online Finances</button></a>
+    </div>
+  </div>
+  <div class="column">
+    <div class="content">
+    <img class="img" data-id="#dialog2" src="Social media.jpg" alt="Socila Media" style="width:100%">
+    <div class="dialog"  id="dialog2">
+      <p>In this image there is an elderly person using a tablet to talk to their relatives through the use of social media</p>
+        </div>
+      <h3>Social media for the elderly</h3>
+      <p>Here we will go through the basics on how to use social media and how we can get you to communicate with your friends and family using an electronic device</p>
+      <a href="a.html">
+      <button id = "btn3">Social media for the elderly</button></a>
+    </div>
+  </div>
+  <div class="column">
+    <div class="content">
+    <img class="img" data-id="#dialog3" src="App usage.jpg" alt="Mobile and apps" style="width:100%">
+    <div class="dialog" id="dialog3">
+      <p>In this image there is an elderly person using their tablet while traversing through an app</p>
+        </div>
+      <h3>Apps and Mobile platform usage</h3>
+      <p>Here we will go through the basics of using a smartphone or a tablet as well as going in depth through some popular apps that you might use in the future</p>
+      <a href="Apps.html">
+      <button id = "btn4">Apps and Mobile platform usage</button></a>
+    </div>
+  </div>
+</div>
+</article>
+      <script>
+        var mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+        onload = function() {
+ if ('speechSynthesis' in window) with(speechSynthesis) {
+
+   var playEle = document.querySelector('#play');
+   var pauseEle = document.querySelector('#pause');
+   var stopEle = document.querySelector('#stop');
+   var flag = false;
+
+   playEle.addEventListener('click', onClickPlay);
+   pauseEle.addEventListener('click', onClickPause);
+   stopEle.addEventListener('click', onClickStop);
+
+   function onClickPlay() {
+     if (!flag) {
+       flag = true;
+       utterance = new SpeechSynthesisUtterance(document.querySelector('article').textContent);
+       utterance.voice = getVoices()[0];
+       utterance.onend = function() {
+         flag = false;
+         playEle.className = pauseEle.className = '';
+         stopEle.className = 'stopped';
+       };
+       playEle.className = 'played';
+       stopEle.className = '';
+       speak(utterance);
+     }
+     if (paused) { /* unpause/resume narration */
+       playEle.className = 'played';
+       pauseEle.className = '';
+       resume();
+     }
+   }
+
+   function onClickPause() {
+     if (speaking && !paused) { /* pause narration */
+       pauseEle.className = 'paused';
+       playEle.className = '';
+       pause();
+     }
+   }
+
+   function onClickStop() {
+     if (speaking) { /* stop narration */
+       /* for safari */
+       stopEle.className = 'stopped';
+       playEle.className = pauseEle.className = '';
+       flag = false;
+       cancel();
+
+     }
+   }
+
+ }
+
+ else { /* speech synthesis not supported */
+   msg = document.createElement('h5');
+   msg.textContent = "Detected no support for Speech Synthesis";
+   msg.style.textAlign = 'center';
+   msg.style.backgroundColor = 'red';
+   msg.style.color = 'white';
+   msg.style.marginTop = msg.style.marginBottom = 0;
+   document.body.insertBefore(msg, document.querySelector('div'));
+ }
+var btn = document.getElementById('btn');
+speechSynthesis.cancel()
+var u = new SpeechSynthesisUtterance();
+var u2 = new SpeechSynthesisUtterance();
+var u3 = new SpeechSynthesisUtterance();
+var u4 = new SpeechSynthesisUtterance();
+u.text = "Click Here and we wiil traverse through the basics of the internet";
+u2.text = "Click Here and we wiil traverse through the basics of Online Bankng";
+u3.text = "Click Here and we wiil traverse through the basics of Social media";
+u4.text = "Click Here and we wiil traverse through the basics of Mobile App usage";
+var lert = "This is a button in which you can progress onto the next stage. Place your mouse off the button and the audio will stop. Place it back to repeat this message."
+
+
+document.getElementById("btn1").addEventListener("mouseenter", function() {
+  speechSynthesis.speak(u);
+});
+document.getElementById("btn1").addEventListener("mouseleave", function() {
+  speechSynthesis.cancel(u)
+});
+document.getElementById("btn2").addEventListener("mouseenter", function() {
+  speechSynthesis.speak(u2);
+});
+document.getElementById("btn2").addEventListener("mouseleave", function() {
+  speechSynthesis.cancel(u2)
+});
+document.getElementById("btn3").addEventListener("mouseenter", function() {
+  speechSynthesis.speak(u3);
+});
+document.getElementById("btn3").addEventListener("mouseleave", function() {
+  speechSynthesis.cancel(u3)
+});
+document.getElementById("btn4").addEventListener("mouseenter", function() {
+  speechSynthesis.speak(u4);
+});
+document.getElementById("btn4").addEventListener("mouseleave", function() {
+  speechSynthesis.cancel(u4)
+});
+ $( function() {
+    $( ".dialog" ).dialog({
+      autoOpen: false,
+      show: {
+        effect: "blind",
+        duration: 1000
+      },
+      hide: {
+        effect: "explode",
+        duration: 1000
+      }
+    });
+ 
+    $(".img").click(function () {
+    var id = $(this).data('id')
+    $(id).dialog("open");
+
+});
+  } );
+}
+    </script>
+   </body>
+</html>

@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+
+<html>
+<head lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Quiz</title>
+    <link href="style.css" rel="Stylesheet">
+    <script type="text/javascript" src="html2canvas.js"></script>
+    <style>
+ 
+.grid {
+    width: 1300px;
+    height:auto;
+    margin: 0 auto ;
+    background-color: #fff;
+    padding: 10px 50px 50px 50px;
+	text-align:center;
+	margin-top: 20px;
+    
+}
+ 
+.grid h1 {
+    background-color: #3D3D3D;
+    font-size: 60px;
+    text-align: center;
+    color: #ffffff;
+    padding: 2px 0px;
+    
+}
+ 
+
+#score {
+    color:#ffffff;
+    text-align: center;
+    font-size: 35px;
+	padding: 5px 5px;
+	height: px;
+}
+
+#summary {
+    color:#ffffff;
+    text-align:left;
+    font-size: 18px;
+	padding: 0px 20px;
+	
+}
+#time{
+color:#ffffff;
+text-align: center;
+    font-size: 25px;
+	padding: 0px 20px;
+	}
+
+	
+ 
+.grid #question {
+    font-family: "monospace";
+    font-size: 30px;
+    color: #3D3D3D;
+}
+ 
+.buttons {
+    margin-top: 30px;
+}
+ 
+#btn0, #btn1, #btn2, #btn3 {
+    background-color: #3D3D3D;
+    width: 250px;
+    font-size: 20px;
+    color: #fff;
+    border: 1px solid #1D3C6A;
+    margin: 10px 40px 10px 0px;
+    padding: 10px 10px;
+}
+ 
+#btn0:hover, #btn1:hover, #btn2:hover, #btn3:hover {
+    cursor: pointer;
+    background-color: #3D3D3D;
+}
+ 
+#btn0:focus, #btn1:focus, #btn2:focus, #btn3:focus {
+    outline: 0;
+}
+ 
+#progress {
+    color: #2b2b2b;
+    font-size: 18px;
+}
+
+#barra {
+  width: 100%;
+  height: 10px;
+  background-color: #ddd;
+}
+
+#bar {
+  height: 10px;
+  background-color: #4CAF50;
+}
+
+#rb{
+    width: 140px;
+            background-color: yellow;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+            border: 3px solid black;
+            transition: width 2s, transform 2s;
+         }
+         #rb:hover {
+            background-color: blue;
+            color: white;
+            border: 3px solid black;
+            width: 180px;
+         }
+
+	
+</style>
+</head>
+<body>
+    <ul class="topnav">
+        <li><a class="active" href="Untitled-1.html">Home</a></li>
+        <li class="right"><a href="Login">Login</a></li>
+      </ul>
+    <div class="grid">
+        <h1>Internet Basics Quiz</h1>
+        <h2>Click on the start quiz button to begin</h2>
+        <h3>You will be asked a series of 10 questions about the topic you just read about<br>There is no time limit</h3>
+        <div id="highScores" class="flex-center flex-column">
+        <h1 id="finalScore"></h1>
+        <form>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              placeholder="username"
+            />
+            
+            <button
+              type="submit"
+              class="btn"
+              id="saveScoreBtn"
+              onclick="saveHighScore(event)"
+              disabled
+            >
+              Save
+            </button>
+
+            <input type='button' id='but_screenshot' value='Take screenshot' onclick='screenshot();'> 
+            <input type='button' id='Refresh' value='Refresh page' onclick='location.reload();'><br/>
+            <a href="a.html"> <input type='button' id='but_screenshot' value='Go Back'> </a>
+          </form>
+        <div id="quiz-box">
+        <button id="btn">Start Quiz</button>
+     </div>
+        <div id="quiz">
+            <hr style="margin-bottom: 20px">
+ 
+            <div class=buttons>
+                <h3>Use the controls to turn on text to speech</h3>
+                <button id=play></button> &nbsp;
+                <button id=pause></button> &nbsp;
+                <button id=stop></button>
+              </div>
+              <article>
+              <p id="question"></p>
+            
+ 
+            <div class="buttons">
+			             
+                <button id="btn0"><span id="choice0"></span></button>
+                <button id="btn1"><span id="choice1"></span></button>
+                <button id="btn2"><span id="choice2"></span></button>
+            </div>
+			</article>
+            <hr style="margin-top: 50px">
+            <footer>
+                <p id="progress">Question x of y</p>
+                <div class="panel-footer">Your Progress<br/>
+                    <p id="questCount"></p>
+                   <div id="barra" class="progress">
+     <div id="bar" class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100" style="width:1%">
+            </footer>
+        </div>
+        </div>
+    </div>
+    </div>
+ 
+<script>
+    function screenshot(){
+    html2canvas(document.body).then(function(canvas) {
+    document.body.appendChild(canvas);
+   });
+  }
+
+  document.getElementById("but_screenshot").addEventListener("click", function() {
+
+html2canvas(document.querySelector('canvas')).then(function(canvas) {
+
+    console.log(canvas);
+    saveAs(canvas.toDataURL(), 'file-name.png');
+});
+});
+
+
+function saveAs(url, filename) {
+
+var link = document.createElement('a');
+
+if (typeof link.download === 'string') {
+
+    link.href = url;
+    link.download = filename;
+
+    //Firefox requires the link to be in the body
+    document.body.appendChild(link);
+
+    //simulate click
+    link.click();
+
+    //remove the link when done
+    document.body.removeChild(link);
+
+} else {
+
+    window.open(url);
+
+}
+}
+    
+function Quiz(questions) {
+    this.score = 0;
+    this.questions = questions;
+    this.questionIndex = 0;
+}
+ 
+Quiz.prototype.getQuestionIndex = function() {
+    return this.questions[this.questionIndex];
+}
+ 
+Quiz.prototype.guess = function(answer) {
+    if(this.getQuestionIndex().isCorrectAnswer(answer)) {
+        this.score+=1;
+    } else {
+		if (this.score>0){
+		this.score-=1 ;
+		}
+		
+	  };
+    this.questionIndex++;
+}
+ 
+Quiz.prototype.isEnded = function() {
+    return this.questionIndex === this.questions.length;
+}
+ 
+ 
+function Question(text, choices, answer) {
+    this.text = text;
+    this.choices = choices;
+    this.answer = answer;
+}
+ 
+Question.prototype.isCorrectAnswer = function(choice) {
+    return this.answer === choice;
+	
+}
+ 
+function populate() {
+    if(quiz.isEnded()) {
+        showScores();
+    }
+    else {
+        // show question
+        var element = document.getElementById("question");
+        element.innerHTML = quiz.getQuestionIndex().text;
+ 
+        // show options
+        var choices = quiz.getQuestionIndex().choices;
+        for(var i = 0; i < choices.length; i++) {
+            var element = document.getElementById("choice" + i);
+            element.innerHTML = choices[i];
+            guess("btn" + i, choices[i]);
+        }
+ 
+        showProgress();
+    }
+};
+
+ 
+function guess(id, guess) {
+    var button = document.getElementById(id);
+    button.onclick = function() {
+        quiz.guess(guess);
+        populate();
+    }
+};
+ 
+ 
+function showProgress() {
+	
+    var currentQuestionNumber = quiz.questionIndex + 1;
+    var element = document.getElementById("progress");
+    element.innerHTML = "Question " + currentQuestionNumber + " of " + quiz.questions.length  ;
+    if (currentQuestionNumber > 0)
+        document.getElementById("bar").style.width = "0%";
+    if (currentQuestionNumber > 1)
+        document.getElementById("bar").style.width = "10%";
+        if (currentQuestionNumber > 2)
+        document.getElementById("bar").style.width = "30%";
+        if (currentQuestionNumber > 3)
+        document.getElementById("bar").style.width = "50%";
+        if (currentQuestionNumber > 4)
+        document.getElementById("bar").style.width = "70%";
+        if (currentQuestionNumber > 5)
+        document.getElementById("bar").style.width = "100%";
+ 
+};
+
+
+
+function showScores() {
+    var element = document.getElementById("finalScore");
+    element.innerHTML = quiz.score;
+	if (quiz.score >= 5) {
+		document.getElementById("quiz").style.backgroundColor = "green";
+		}
+		else{
+			document.getElementById("quiz").style.backgroundColor = "red";
+		}
+	if 	(quiz.score >= 5) {
+    var gameOverHTML = "<h1>Result</h1>"; 
+    gameOverHTML += "<h2 id='score'>Congratulations, your score is: " + quiz.score + " out of 5 </h2>";
+	gameOverHTML += "<h4 id='summary'>Question1= World Wide Web </h4>";
+	gameOverHTML += "<h4 id='summary'>Question2=There is a https at the beginning</h4>";
+	gameOverHTML += "<h4 id='summary'>Question3=Your user name and password</h4>";
+    gameOverHTML += "<h4 id='summary'>Question4= Your name and surname </h4>";
+	gameOverHTML += "<h4 id='summary'>Question5=@</h4>";
+    gameOverHTML += "<button id='rb' onclick='location.reload()'>want to try again?</button>"
+    var element = document.getElementById("quiz");
+    element.innerHTML = gameOverHTML;
+	}
+	else {
+	var gameOverHTML = "<h1>Result</h1>";
+    gameOverHTML += "<h2 id='score'>Sorry.. but your score is: " + quiz.score + " out of 5</h2>" ; 
+    gameOverHTML += "<h4 id='summary'>Question1= World Wide Web </h4>";
+	gameOverHTML += "<h4 id='summary'>Question2=There is a https at the beginning</h4>";
+	gameOverHTML += "<h4 id='summary'>Question3=Your user name and password</h4>";
+    gameOverHTML += "<h4 id='summary'>Question4= Your name and surname </h4>";
+	gameOverHTML += "<h4 id='summary'>Question5=@</h4>";
+	gameOverHTML += "<button id='rb' onclick='location.reload()'>want to try again?</button>"
+	var element = document.getElementById("quiz");
+    element.innerHTML = gameOverHTML;
+    }
+		
+};
+ 
+// create questions here
+var questions = [
+    new Question("What does www stand for? ", ["World Wide Web", "Wide Wide Web","Web Wide Web"], "World Wide Web"),
+    new Question("How do you know when a website is secure ", ["There is a http at the beginning", "There is a https at the beginning", "Nothing"], "There is a https at the beginning"),
+    new Question("Which one of these rules are important for a log in ", ["Your user name and password", "Your home address", "random letters and numbers"], "Your user name and password"),
+    new Question("Which one of these rules are important on an email", ["Your name and surname", "Your postcode", "An image of yourself"],"Your name and surname"),
+    new Question("Which one of these symbols is for an email? ", ["?", "&", "@"], "@")
+
+	
+	
+];
+ 
+// create quiz
+var quiz = new Quiz(questions);
+ 
+// display quiz
+document.getElementById('quiz-box').style.display=''
+document.getElementById('quiz').style.display = 'none';
+document.getElementById("btn").addEventListener("click", function() {
+    document.getElementById('quiz').style.display=''
+    document.getElementById('quiz-box').style.display = 'none';
+    populate();
+})
+const username = document.getElementById('username');
+    const saveScoreBtn = document.getElementById('saveScoreBtn');
+    const finalScore = document.getElementById('finalScore')
+    const mostRecentScore = localStorage.getItem('mostRecentScore');
+    Promise.resolve()
+
+    const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+
+    const MAX_HIGH_SCORES = 5;
+
+    finalScore.innerText = mostRecentScore;
+
+    username.addEventListener('keyup', () => {
+        saveScoreBtn.disabled = !username.value;
+    });
+
+    saveHighScore = (e) => {
+        e.preventDefault();
+
+        const score = {
+            score: mostRecentScore,
+            name: username.value,
+        };
+        highScores.push(score);
+        highScores.sort((a, b) => b.score - a.score);
+        highScores.splice(5);
+        var element = document.getElementById("finalScore");
+        element.innerHTML = username.value;
+
+        localStorage.setItem('highScores', JSON.stringify(highScores));
+        window.location.assign('/');
+    };   
+
+    onload = function() {
+ if ('speechSynthesis' in window) with(speechSynthesis) {
+
+   var playEle = document.querySelector('#play');
+   var pauseEle = document.querySelector('#pause');
+   var stopEle = document.querySelector('#stop');
+   var flag = false;
+
+   playEle.addEventListener('click', onClickPlay);
+   pauseEle.addEventListener('click', onClickPause);
+   stopEle.addEventListener('click', onClickStop);
+
+   function onClickPlay() {
+     if (!flag) {
+       flag = true;
+       utterance = new SpeechSynthesisUtterance(document.getElementById('quiz').textContent);
+       utterance.voice = getVoices()[0];
+       utterance.onend = function() {
+         flag = false;
+         playEle.className = pauseEle.className = '';
+         stopEle.className = 'stopped';
+       };
+       playEle.className = 'played';
+       stopEle.className = '';
+       speak(utterance);
+     }
+     if (paused) { /* unpause/resume narration */
+       playEle.className = 'played';
+       pauseEle.className = '';
+       resume();
+     }
+   }
+
+   function onClickPause() {
+     if (speaking && !paused) { /* pause narration */
+       pauseEle.className = 'paused';
+       playEle.className = '';
+       pause();
+     }
+   }
+
+   function onClickStop() {
+     if (speaking) { /* stop narration */
+       /* for safari */
+       stopEle.className = 'stopped';
+       playEle.className = pauseEle.className = '';
+       flag = false;
+       cancel();
+
+     }
+   }
+
+ }
+
+ else { /* speech synthesis not supported */
+   msg = document.createElement('h5');
+   msg.textContent = "Detected no support for Speech Synthesis";
+   msg.style.textAlign = 'center';
+   msg.style.backgroundColor = 'red';
+   msg.style.color = 'white';
+   msg.style.marginTop = msg.style.marginBottom = 0;
+   document.body.insertBefore(msg, document.querySelector('div'));
+ }
+
+ var btn = document.getElementById('btn');
+speechSynthesis.cancel()
+var u = new SpeechSynthesisUtterance();
+var u2 = new SpeechSynthesisUtterance();
+var u3 = new SpeechSynthesisUtterance();
+u.text = "Click Here to begin the quiz";
+u2.text = "Take a screenshot of your results";
+u3.text = "Refresh the page";
+
+
+document.getElementById("btn").addEventListener("mouseenter", function() {
+  speechSynthesis.speak(u);
+});
+document.getElementById("btn").addEventListener("mouseleave", function() {
+  speechSynthesis.cancel(u)
+});
+document.getElementById("but_screenshot").addEventListener("mouseenter", function() {
+  speechSynthesis.speak(u2);
+});
+document.getElementById("but_screenshot").addEventListener("mouseleave", function() {
+  speechSynthesis.cancel(u2)
+});
+document.getElementById("Refresh").addEventListener("mouseenter", function() {
+  speechSynthesis.speak(u3);
+});
+document.getElementById("Refresh").addEventListener("mouseleave", function() {
+  speechSynthesis.cancel(u3)
+});
+    } 
+</script>
+ 
+</body>
+</html>

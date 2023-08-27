@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+   <head>
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+       <link rel="stylesheet" href="style.css">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+       <style>
+         h3:first-child b{
+           font-weight: bolder;
+         }
+
+         body{
+           background-image: url('intro background.jpg');
+           background-size: cover;
+         }
+
+         #box{
+           background-color: blue;
+           width: 80%;
+            color: white;
+           position: absolute;
+            top:0;
+            left: 0;
+            right: 0;
+            margin: auto;
+           border-radius: 15px;
+           border: 3px solid black;
+           text-align: center;
+         }
+       </style>
+   </head>
+   <body>
+     <div id="box">
+      <div class="child">
+   <article>
+    <h1>Welcome to the internet intorduction course</h1>
+    <h2>This is the intorduction page.</h2> 
+    <h3>Put your mouse over the button to hear an audio cue of the text</h3>
+   </article>
+    <a href="Untitled-1.html">
+    <button id = "btn">Click here to begin learning</button></a>
+    <div class=buttons>
+      <h3>Use the controls to turn on text to speech. <b>Only if using a mobile device/tablet</b></h3>
+      <button id=play></button> &nbsp;
+    </div>
+    </div>
+  </div>
+<script>
+ onload = function() {
+ if ('speechSynthesis' in window) with(speechSynthesis) {
+
+   var playEle = document.querySelector('#play');
+   var flag = false;
+
+   playEle.addEventListener('click', onClickPlay);
+
+   function onClickPlay() {
+     if (!flag) {
+       flag = true;
+       utterance = new SpeechSynthesisUtterance(document.querySelector('article').textContent);
+       utterance.voice = getVoices()[0];
+       utterance.onend = function() {
+         flag = false;
+       };
+       speak(utterance);
+     }
+
+ }
+
+ var mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+
+var btn = document.getElementById('btn');
+speechSynthesis.cancel()
+var u = new SpeechSynthesisUtterance();
+var u2 = new SpeechSynthesisUtterance();
+u.text = "Click here to begin learning";
+
+document.getElementById("btn").addEventListener("mouseenter", function() {
+  speechSynthesis.speak(u);
+});
+document.getElementById("btn").addEventListener("mouseleave", function() {
+  speechSynthesis.cancel(u)
+});
+ }}        
+</script>
+   </body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Form</title>
+    <meta name="description" content="Portfolio">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="stylesheet" href="style.css">
+    <style>
+    /*This is where the main part of the page is changed */
+      section {
+        /*As there is no aside this will make the flex box go into the whole page*/
+        flex: 1;
+        /*Here some padding for the words to be spaced out*/
+        padding-right: 6px;
+        padding-bottom: 3px;
+        color: white;
+        padding-left: 10px;
+        animation: fade 10s;
+      }
+    /*This area is responsible for the animation that created the fade in effect by having no opacity in the 1st frame and then bringing it back in the final frame*/
+
+
+  /*Here are the attribute selectors that will change how the text and email inputs will look like*/
+  input[type=text],[type=email] {
+  width: 170px;
+  display: block;
+  margin-bottom: 10px;
+  background-color: white;
+  }
+
+  /*The colour for the text inside of the placeholder attribute for the input field will be black */
+input::placeholder{
+  color: black;
+}
+/*This attribute selector will change how the submit button will look */
+input[type=submit] {
+  width: 120px;
+  margin: 0 auto;
+}
+
+/*This changes the comments input size*/
+textarea{
+  width: 100%;
+  height: 100px;
+}
+
+/*Before the begining of the fieldset I put some generated content and changed the font style of the content to italic*/
+fieldset::before{
+    content: "Fill all of the required fields listed in red";
+    font-style: italic;
+}
+
+/*If the inputs doesn't match the needed criteria before submission then the background colour of the input will be red with a cross next to it to show that its required*/
+input:not([type=submit]):invalid:required {
+    background: #ffdddd url('cross.png') no-repeat right top; 	
+}
+
+/*If the inputs match the needed criteria before the submission then the background colour of the input will become green with a tick next to it*/
+input:not([type=submit]):valid:required {
+    background: #ddffdd url('mark.png') no-repeat right top; 
+}
+
+/*If the inputs match the needed criteria before the submission then the background colour of the input will stay blue as it's an optional field*/
+textarea:not([type=submit]):optional {
+    background-color: #add1ef;
+}
+    </style>
+  </head>
+  <body>
+    <header class="header-menu">
+      <nav>
+        <ul>
+          <li><a href="Portfolio.html">Home Page</a></li>
+          <li><a href="hobbies_page.html">Blog</a></li>
+          <li><p>My Prortfolio</p></li>
+          <li><a href="about_page.html">About</a></li>
+          <li><a href="form.html">Form</a></li>
+        </ul>
+      </nav>
+    </header>
+    <section>
+      <article>
+        <header>
+          <h1>Form</h1>
+          <h2>Newsletter</h2>
+          <p>Here you can subscribe to our newsletter for all the latest information</p>
+          <p>Just fill out the form for the latest news</p>
+        </header>
+      </article>
+        <fieldset>
+        <legend>Subscribe to our newsletter</legend>
+        <form action="/subscribe" method="post">
+
+        <label for="firstname">Firstname:</label>
+        <input id="firstname" name="firstname" type="text" placeholder="E.g. James" required/>
+        
+        <label for="surname">Surname:</label>
+        <input id="surname" name="surname" type="text" placeholder="E.g. Jones" required/>
+    
+        <label for="email">Email:</label>
+        <input id="email" name="email" type="email"  placeholder="E.g. james123@gmail.com" required/>
+        
+        <label for="comment">Comment:</label>
+        <textarea id="comment" name="comment" placeholder="Write as much as you want" ></textarea>
+        
+        <input type="submit" value="Submit"/>
+        </form>
+      </fieldset>
+    </section>
+    <footer>
+      <a href="form.html">Contact Form</a>
+      <a href="about_page.html">About</a>
+      <a href="#top"> Back to the top</a>
+    </footer>
+  </body>
+</html>

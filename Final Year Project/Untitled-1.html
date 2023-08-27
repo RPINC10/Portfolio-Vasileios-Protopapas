@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+   <head>
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+       <link rel="stylesheet" href="style.css">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+   </head>
+   <style>
+    * {
+box-sizing: border-box;
+}
+
+    #myBtn {
+display: none;
+position: fixed;
+bottom: 20px;
+right: 30px;
+z-index: 99;
+font-size: 18px;
+border: none;
+outline: none;
+background-color: red;
+color: white;
+cursor: pointer;
+padding: 15px;
+border-radius: 4px;
+}
+     #btn1,#btn2,#btn3,#btn4 {
+        width: 300px;
+        background-color: yellow;
+        color: black;
+        text-align: center;
+        font-size: 15px;
+        padding: 20px;
+        border-radius: 15px;
+        border: 3px dashed blue;
+        transition: width 2s, transform 2s;
+     }
+     #btn1:hover,#btn2:hover,#btn3:hover,#btn4:hover {
+        background-color: orange;
+        color: black;
+        border: 3px solid blue;
+        width: 350px;
+     }
+
+  .icon-description{
+       width: 20%;
+        margin: auto;
+       border-radius: 15px;
+       border: 3px solid black;
+  }
+
+  article{
+    padding: 1%;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .icon-description{
+       width: 40%;
+  }
+}
+  @media screen and (max-width: 1000px) {
+    .icon-description{
+       width: 40%;
+  }
+}
+  @media screen and (max-width: 620px) {
+    .icon-description{
+       width: 80%;
+  }
+}
+
+
+.row {
+margin: 8px -16px;
+display: flex;
+}
+
+/* Add padding BETWEEN each column */
+.row,
+.row > .column {
+padding: 8px;
+}
+
+/* Create four equal columns that floats next to each other */
+.column {
+float: left;
+width: 50%;
+}
+
+/* Clear floats after rows */ 
+.row:after {
+content: "";
+display: table;
+clear: both;
+}
+
+/* Content */
+.content {
+background-color: white;
+padding: 10px;
+height: 620px;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 900px) {
+.column {
+width: 80%;
+margin: 0 auto;
+}
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+.column {
+width: 100%;
+margin: 0 auto;
+}
+}
+
+#dialog,#dialog1,#dialog2,#dialog3{
+position: relative;
+background-color: green;
+color: white;
+}
+
+.img{
+width: 200px;
+height: 300px;
+}
+
+
+   </style>
+   <body>
+      <ul class="topnav">
+         <li><a class="active" href="Untitled-1.html">Home</a></li>
+         <li class="right"><a href="presentation.html">Login</a></li>
+       </ul>
+       <div class=buttons>
+         <h3>Use the controls to turn on text to speech</h3>
+         <button id=play></button> &nbsp;
+         <button id=pause></button> &nbsp;
+         <button id=stop></button>
+       </div>
+   <article>
+    <button onclick="topFunction()" id="myBtn" title="Go back to the top">Top</button> 
+    <h2>Welcome to the internet intorduction course </h2>
+    <p>Click below to progress</p>
+   </article>
+   <div class="row">
+    <div class="column">
+      <div class="content">
+        <img class="img" data-id="#dialog" src="internet.png" alt="Internet basics" style="width:100%" display="block">
+        <div class="dialog"  id="dialog">
+          <p></p>
+            </div>
+        <h3>Beginner</h3>
+        <p>This level is for newcommers</p>
+        <a href="Untitled2.html">
+          <button id = "btn1">Beginner</button></a>
+      </div>
+    </div>
+    <div class="column">
+      <div class="content">
+      <img class="img" data-id="#dialog1" src="online banking.jpg" alt="Online Finance" style="width:100%">
+      <div class="dialog"  id="dialog1">
+        <p></p>          
+      </div>
+        <h3>Intermediate</h3>
+        <p>This level is for people with a basic understanding</p>
+        <a href="a.html">
+        <button id = "btn2">Intermediate</button></a>
+      </div>
+    </div>
+      </div>
+    </div>
+   </div>
+<script>
+   var mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+         onload = function() {
+ if ('speechSynthesis' in window) with(speechSynthesis) {
+
+   var playEle = document.querySelector('#play');
+   var pauseEle = document.querySelector('#pause');
+   var stopEle = document.querySelector('#stop');
+   var flag = false;
+
+   playEle.addEventListener('click', onClickPlay);
+   pauseEle.addEventListener('click', onClickPause);
+   stopEle.addEventListener('click', onClickStop);
+
+   function onClickPlay() {
+     if (!flag) {
+       flag = true;
+       utterance = new SpeechSynthesisUtterance(document.querySelector('article').textContent);
+       utterance.voice = getVoices()[0];
+       utterance.onend = function() {
+         flag = false;
+         playEle.className = pauseEle.className = '';
+         stopEle.className = 'stopped';
+       };
+       playEle.className = 'played';
+       stopEle.className = '';
+       speak(utterance);
+     }
+     if (paused) { /* unpause/resume narration */
+       playEle.className = 'played';
+       pauseEle.className = '';
+       resume();
+     }
+   }
+
+   function onClickPause() {
+     if (speaking && !paused) { /* pause narration */
+       pauseEle.className = 'paused';
+       playEle.className = '';
+       pause();
+     }
+   }
+
+   function onClickStop() {
+     if (speaking) { /* stop narration */
+       /* for safari */
+       stopEle.className = 'stopped';
+       playEle.className = pauseEle.className = '';
+       flag = false;
+       cancel();
+
+     }
+   }
+
+ }
+
+ else { /* speech synthesis not supported */
+   msg = document.createElement('h5');
+   msg.textContent = "Detected no support for Speech Synthesis";
+   msg.style.textAlign = 'center';
+   msg.style.backgroundColor = 'red';
+   msg.style.color = 'white';
+   msg.style.marginTop = msg.style.marginBottom = 0;
+   document.body.insertBefore(msg, document.querySelector('div'));
+ }
+var btn = document.getElementById('btn');
+speechSynthesis.cancel()
+var u = new SpeechSynthesisUtterance();
+var u2 = new SpeechSynthesisUtterance();
+var u4 = new SpeechSynthesisUtterance();
+u.text = "This is a button in which you can progress to the beginner course. Place your mouse off the button and the audio will stop. Place it back to repeat this message.";
+u2.text="Click here to enter the intermediate stage"
+u4.text="Click here to go back to the top"
+var lert = "This is a button in which you can progress onto the next stage. Place your mouse off the button and the audio will stop. Place it back to repeat this message."
+
+
+document.getElementById("btn1").addEventListener("mouseenter", function() {
+  speechSynthesis.speak(u);
+});
+document.getElementById("btn1").addEventListener("mouseleave", function() {
+  speechSynthesis.cancel(u)
+});
+document.getElementById("btn2").addEventListener("mouseenter", function() {
+  speechSynthesis.speak(u2);
+});
+document.getElementById("btn2").addEventListener("mouseleave", function() {
+  speechSynthesis.cancel(u2)
+});
+document.getElementById("myBtn").addEventListener("mouseenter", function() {
+  speechSynthesis.speak(u4);
+});
+document.getElementById("myBtn").addEventListener("mouseleave", function() {
+  speechSynthesis.cancel(u4)
+});
+         }
+</script>
+   </body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
+    <style>
+
+.invalid{
+  color:red
+}
+
+#play::after{
+             content: "\25B6";
+         }
+
+         #pause::after{
+             content: "\23F8";
+         }
+
+
+         #stop::after{
+             content: "\23F9";
+         }
+
+ body{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  .page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 4rem;
+  }
+  
+  .page h1 {
+    font-size: 4rem;
+    line-height: 1.2;
+    margin: 1rem;
+  }
+  
+  .page p {
+    font-size: 1.3rem;
+  }
+
+  .page ul {
+    font-size: 1.3rem;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: #f4f4f4;
+    color: #333;
+    border-radius: 5px;
+    border: none;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: all ease-in 0.3s;
+  }
+  
+  .btn:hover,
+  .btn_dark {
+    background: #333;
+    color: #fff;
+  }
+  
+  .btn_dark:hover {
+    background: #f4f4f4;
+    color: #333;
+  }
+
+  #page_1 {
+  background: lightblue;
+}
+
+#page_2 {
+  background: lightcyan;
+}
+
+#page_3 {
+  background: lightsalmon;
+}
+
+#page_1 h1 {
+  transform: translateY(-1000px);
+  animation: heading 1s forwards ease-in;
+}
+
+@keyframes heading {
+  to {
+    transform: translateY(0);
+  }
+}
+
+#page_1 p {
+  transform: translateX(-2000px);
+  animation: text 2.7s forwards ease-in;
+  margin: inherit;
+  padding: 0 10px;
+}
+
+@keyframes text {
+  to {
+    transform: translateX(0);
+  }
+}
+
+.wrap{
+    display: flex;
+    width: 50%;
+}
+
+.img1{
+    width: 100%;
+}
+
+  </style>
+</head>
+<body>
+<!--Page 1-->
+<section id="page_1" class="page">
+    <div class=buttons>
+        <h3>Use the controls to turn on text to speech</h3>
+        <button id=play></button> &nbsp;
+        <button id=pause></button> &nbsp;
+        <button id=stop></button>
+      </div>
+  <h1>Log in pages</h1>
+  <h2>Here we will talk about</h2>
+  <div class="wrap">
+  <img class="img1" data-id="#dialog3" src="log in.png" alt="Mobile and apps">
+  <p>
+    Here we will talk about a basic login page which consists of two parts mainly a username/email address and a password
+  </p>
+  </div>
+  <a href="#page_2" class="btn"
+    >Next Page
+  </a>
+</section>
+<!--Page 2-->
+<section id="page_2" class="page">
+    <div class=buttons>
+        <h3>Use the controls to turn on text to speech</h3>
+        <button id=play></button> &nbsp;
+        <button id=pause></button> &nbsp;
+        <button id=stop></button>
+      </div>
+  <h1>Basics of emails</h1>
+  <img class="img" data-id="#dialog3" src="email.jpg" alt="Mobile and apps">
+  <ul>
+    <li>Your full name.</li>
+    <li> Your choice of email address. This has to be unique, so you might have to try a few times to come up with one that isn’t already in use, e.g. 'joe.bloggs@gmail.com' or 'joe.bloggs@outlook.com'.</li>
+    <li> Your choice of password. This should be a strong password – read our information on password security for more information.</li>
+    <li> Personal information such as your date of birth and gender.</li>
+    <li> Your phone number - this may be used to verify your account, where you’ll get sent a code over text message which you need to enter on the web page.</li>
+</ul>  
+  <div>
+    <a href="#page_1" class="btn btn_dark"
+      >Prev Page>
+    </a>
+    <a href="#page_3" class="btn"
+      >Next Page
+    </a>
+  </div>
+</section>
+<!--Page 3-->
+<section id="page_3" class="page">
+    <div class=buttons>
+        <h3>Use the controls to turn on text to speech</h3>
+        <button id=play></button> &nbsp;
+        <button id=pause></button> &nbsp;
+        <button id=stop></button>
+      </div>
+  <h1>Welcome To Page-3</h1>
+  <p>
+    Here you will do a log in for your self make sure that you have 4 characters for your username and 8 for your passowrd!
+  </p>
+  <form method="post" id="login_form" name="login_form" action="#">
+    <div>
+    <label for="username">Username:<label><br>
+      <input type="text" name="username" minlength=4 id="username" required>
+    </div>
+    <div>
+    <label for="Password">Password:</label><br>
+      <input type="password" name="password" minlength=8 id="password" required>
+    </div>
+        <br>
+      <input type="submit" id="submit" name="submit" value="Log In">
+  </form>
+  <div>
+    <a href="#page_2" class="btn btn_dark"
+      >Prev Page <i class="fas fa-arrow-circle-up"> </i>
+    </a>
+    <a href="quiz.html" class="btn btn_dark"
+      >Quiz <i class="fas fa-arrow-circle-up"> </i>
+    </a>
+</section>
+<script>
+      onload = function() {
+ if ('speechSynthesis' in window) with(speechSynthesis) {
+
+   var playEle = document.querySelector('#play');
+   var pauseEle = document.querySelector('#pause');
+   var stopEle = document.querySelector('#stop');
+   var flag = false;
+
+   playEle.addEventListener('click', onClickPlay);
+   pauseEle.addEventListener('click', onClickPause);
+   stopEle.addEventListener('click', onClickStop);
+
+   function onClickPlay() {
+     if (!flag) {
+       flag = true;
+       utterance = new SpeechSynthesisUtterance(document.querySelector('section').textContent);
+       utterance.voice = getVoices()[0];
+       utterance.onend = function() {
+         flag = false;
+         playEle.className = pauseEle.className = '';
+         stopEle.className = 'stopped';
+       };
+       playEle.className = 'played';
+       stopEle.className = '';
+       speak(utterance);
+     }
+     if (paused) { /* unpause/resume narration */
+       playEle.className = 'played';
+       pauseEle.className = '';
+       resume();
+     }
+   }
+
+   function onClickPause() {
+     if (speaking && !paused) { /* pause narration */
+       pauseEle.className = 'paused';
+       playEle.className = '';
+       pause();
+     }
+   }
+
+   function onClickStop() {
+     if (speaking) { /* stop narration */
+       /* for safari */
+       stopEle.className = 'stopped';
+       playEle.className = pauseEle.className = '';
+       flag = false;
+       cancel();
+
+     }
+   }
+
+ }
+
+ else { /* speech synthesis not supported */
+   msg = document.createElement('h5');
+   msg.textContent = "Detected no support for Speech Synthesis";
+   msg.style.textAlign = 'center';
+   msg.style.backgroundColor = 'red';
+   msg.style.color = 'white';
+   msg.style.marginTop = msg.style.marginBottom = 0;
+   document.body.insertBefore(msg, document.querySelector('div'));
+ }
+}
+    $(".btn").on("click", function(event) {
+  if (this.hash !== "") {
+    event.preventDefault();
+    const hash = this.hash;
+    $("html, body").animate(
+      {
+        scrollTop: $(hash).offset().top
+      },
+      800
+    );
+  }
+});
+
+$("#login_form").validate({
+  errorClass: "invalid",
+  messages: {
+    password: {
+      required: "Please enter your password",
+      minlength: jQuery.validator.format("At least {0} characters required!")
+    
+    },
+    username: {
+      required: "Please enter your username",
+      minlength: jQuery.validator.format("At least {0} characters required!")
+    
+    }
+  }
+});
+
+</script>
+<!-- More Presentations Here -->
+</body>
+</html>
